@@ -1,7 +1,7 @@
 # Implement Artifact-level possible-classification authorization
 
 Type: task
-Status: claimed
+Status: resolved
 Assignee: Codex
 
 ## Comments
@@ -10,6 +10,18 @@ Assignee: Codex
 
 Claimed for implementation. The first vertical slice will establish the public Audience authorization seam, then use it to drive Artifact-level filtering without changing the LLM provider yet.
 Labels: wayfinder:task
+
+### Implementation
+
+Implemented in application commit `67a35d4`.
+
+- Added explicit per-tag `present`, `absent`, and `uncertain` assessments with effective and possible classifications.
+- Added Audience allow/deny ACLs, Realm wildcard membership implication, and deny precedence.
+- Made canonical Memory records support multiple Artifacts with independent Sources.
+- Enforced Artifact-level authorization in snapshot and request-scoped retrieval/curation paths; denied Artifacts are omitted and a Memory with no eligible Artifacts yields no source.
+- Preserved metadata exclusion from projection sources and carried assessment data through canonical classification storage.
+
+Focused domain, policy, installation, realm, classification, and projection tests pass. A full `go test ./...` run was attempted, but Git-origin revalidation in existing Windows-heavy integration tests exceeded the test timeout; the changed projection package also hits that environmental timeout in its publication-integrity tests.
 
 ## Goal
 
