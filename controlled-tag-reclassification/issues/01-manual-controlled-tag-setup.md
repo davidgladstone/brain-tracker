@@ -4,10 +4,14 @@
 
 **Blocked by:** None (can start immediately).
 
-**Status:** ready-for-agent
+**Status:** resolved
 
-- [ ] A new Realm's empty policy templates are accompanied by a complete, realistic example of at least one Controlled Tag and matching classification guidance.
-- [ ] The example explains required fields, confidence thresholds, and the distinction between authorization-relevant definition and advisory handling guidance.
-- [ ] The documented manual procedure covers editing the tag definition and guidance, updating the Realm manifest hashes, and validating the policy through the supported command.
-- [ ] An operator can use the example without relying on test fixtures or undocumented implementation details.
-- [ ] No tag CRUD commands, automatic migration, or broader policy-management workflow is introduced.
+- [x] A new Realm's empty policy templates are accompanied by a complete, realistic example of at least one Controlled Tag and matching classification guidance.
+- [x] The example explains required fields, confidence thresholds, and the distinction between authorization-relevant definition and advisory handling guidance.
+- [x] The documented manual procedure covers editing the tag definition and guidance, updating the Realm manifest hashes, and validating the policy through the supported command.
+- [x] An operator can use the example without relying on test fixtures or undocumented implementation details.
+- [x] No tag CRUD commands, automatic migration, or broader policy-management workflow is introduced.
+
+## Comments
+
+- 2026-09-23: Implemented in application commit `b6f0185`; added the generated Realm example, manual setup/hash-validation procedure, and regression coverage.
