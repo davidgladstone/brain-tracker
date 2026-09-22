@@ -21,6 +21,8 @@ Audience access uses explicit allow and deny rules over qualified Controlled Tag
 
 Authorization evaluates the complete possible classification: present tags plus uncertain tags. An Artifact with an uncertain `personal.secret` tag is denied to an Audience that does not permit `personal.secret`, but may be retrieved or curated by an Audience that does permit it.
 
+This is intentionally asymmetric: uncertainty is conservative for Audiences that lack a possible tag and permissive for Audiences that already possess it. Classification review is therefore concerned with safely widening availability and derived projections, not with protecting an Audience that already satisfies the possible classification.
+
 Curation selects Artifacts independently. A Knowledge Variant uses only eligible Artifacts, and its possible classification is the union of the present and uncertain tags of those contributing Artifacts. Publication must authorize that complete union.
 
 Memory retrieval returns an Audience-filtered view containing only eligible Artifacts and never exposes Memory metadata. Hidden Artifacts behave as absent; a Memory with no eligible Artifacts behaves as not found.
