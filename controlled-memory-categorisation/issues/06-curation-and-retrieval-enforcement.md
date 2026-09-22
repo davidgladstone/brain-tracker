@@ -1,7 +1,8 @@
 # Define classification enforcement across curation and retrieval
 
 Type: grilling
-Status: open
+Status: claimed
+Assignee: Codex
 Labels: wayfinder:grilling
 
 ## Question
