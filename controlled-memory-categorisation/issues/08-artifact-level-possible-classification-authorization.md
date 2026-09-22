@@ -1,7 +1,14 @@
 # Implement Artifact-level possible-classification authorization
 
 Type: task
-Status: open
+Status: claimed
+Assignee: Codex
+
+## Comments
+
+### Claim
+
+Claimed for implementation. The first vertical slice will establish the public Audience authorization seam, then use it to drive Artifact-level filtering without changing the LLM provider yet.
 Labels: wayfinder:task
 
 ## Goal
