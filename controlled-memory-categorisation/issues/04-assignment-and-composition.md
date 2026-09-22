@@ -1,7 +1,8 @@
 # Define Memory and Artifact classification composition
 
 Type: grilling
-Status: open
+Status: claimed
+Assignee: Codex
 Labels: wayfinder:grilling
 
 ## Question
