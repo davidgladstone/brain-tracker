@@ -20,10 +20,9 @@ The destination is the design boundary, not implementation, provider selection, 
 - [Define Memory and Artifact classification composition](./issues/04-assignment-and-composition.md): Artifacts own content classification; Memory views and derived knowledge union only eligible Artifact tags, hide denied Artifacts, and never surface Memory metadata.
 - [Define ambiguity and review handling](./issues/05-ambiguity-and-review-lifecycle.md): Tags receive explicit present/absent/uncertain assessments from confidence bounds; clear Artifacts use Realm membership alone, uncertainty constrains Audiences lacking the possible tag but remains usable by permitted Audiences, and review safely decides whether wider availability can be enabled.
 - [Define classification enforcement across curation and retrieval](./issues/06-curation-and-retrieval-enforcement.md): Audiences use default-deny allow/deny policies with wildcard membership implication; possible classifications gate filtered retrieval and curation, and policy changes invalidate affected Publications.
+- [Define definition evolution and reclassification](./issues/07-definition-evolution-and-reclassification.md): Controlled Tag identities and published definition versions are immutable; authorization-relevant changes stale prior decisions and projections, preserve historical interpretation, and queue conservative demand/risk-driven reclassification, while retired tags remain available only for legacy interpretation and access.
 
 ## Not yet specified
-
-- How tag definitions and decisions evolve without making prior classifications ambiguous.
 
 ## Out of scope
 
