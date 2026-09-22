@@ -22,8 +22,6 @@ The destination is the design boundary, not implementation, provider selection, 
 - [Define classification enforcement across curation and retrieval](./issues/06-curation-and-retrieval-enforcement.md): Audiences use default-deny allow/deny policies with wildcard membership implication; possible classifications gate filtered retrieval and curation, and policy changes invalidate affected Publications.
 - [Define definition evolution and reclassification](./issues/07-definition-evolution-and-reclassification.md): Controlled Tag identities and published definition versions are immutable; authorization-relevant changes stale prior decisions and projections, preserve historical interpretation, and queue conservative demand/risk-driven reclassification, while retired tags remain available only for legacy interpretation and access.
 
-## Not yet specified
-
 ## Out of scope
 
 - Implementing the classifier, changing the LLM provider runtime, migrating existing data, or building operator UI.
