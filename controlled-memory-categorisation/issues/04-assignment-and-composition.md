@@ -24,3 +24,7 @@ Audience authorization is evaluated per Artifact. An Audience may see and curate
 An inaccessible Artifact behaves as not found. A Memory with no eligible Artifacts is not visible. Memory metadata remains stored with the Memory and may inform classification, but is never surfaced through Memory retrieval or derived Knowledge; it has no independent audience disclosure path.
 
 Source updates require classification of the new Artifact before that Artifact can enter any Audience view or derived projection.
+
+### Follow-up clarification
+
+Stored Memory metadata may be surfaced as private context during Classification Review to help a human reviewer. This does not make it available through Audience retrieval or derived Knowledge.
