@@ -19,10 +19,10 @@ The destination is the design boundary, not implementation, provider selection, 
 - [Set the LLM's classification authority](./issues/03-llm-classification-authority.md): The LLM selects only existing tags or abstains; new-tag suggestions go to a separate human taxonomy workflow, and `unclassified` is distinct from `pending_review`.
 - [Define Memory and Artifact classification composition](./issues/04-assignment-and-composition.md): Artifacts own content classification; Memory views and derived knowledge union only eligible Artifact tags, hide denied Artifacts, and never surface Memory metadata.
 - [Define ambiguity and review handling](./issues/05-ambiguity-and-review-lifecycle.md): Tags receive explicit present/absent/uncertain assessments; clear Artifacts use Realm membership alone, uncertainty constrains access, and human review operates per Artifact/source version.
+- [Define classification enforcement across curation and retrieval](./issues/06-curation-and-retrieval-enforcement.md): Audiences use default-deny allow/deny policies with wildcard membership implication; possible classifications gate filtered retrieval and curation, and policy changes invalidate affected Publications.
 
 ## Not yet specified
 
-- How accepted classification affects curation eligibility, publication invalidation, and retrieval.
 - How tag definitions and decisions evolve without making prior classifications ambiguous.
 
 ## Out of scope
