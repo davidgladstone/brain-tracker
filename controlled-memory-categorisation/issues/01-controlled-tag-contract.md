@@ -1,7 +1,8 @@
 # Define the Controlled Tag contract
 
 Type: grilling
-Status: open
+Status: claimed
+Assignee: Codex
 Labels: wayfinder:grilling
 
 ## Question
