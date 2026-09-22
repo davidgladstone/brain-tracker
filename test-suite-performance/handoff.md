@@ -1,8 +1,10 @@
 # Test-suite performance: diagnosis and implementation handoff
 
-Status: ready-for-agent
+Status: resolved
 Application baseline: `67a35d4`
 Measured: 2026-09-22, Windows amd64, Go 1.26.7, Git 2.51.1.windows.1.
+
+Implementation completed 2026-09-23. See [implementation results](implementation-results.md) for changes, passing full-suite verification, timings, and coverage. The diagnosis and proposed sequence below are retained as historical context.
 
 ## Objective
 
