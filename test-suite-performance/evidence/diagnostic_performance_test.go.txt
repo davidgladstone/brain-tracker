@@ -1,0 +1,37 @@
+package projection_test
+
+import (
+	"os"
+	"strings"
+	"testing"
+	"time"
+
+	"github.com/david/mybrain/internal/installation"
+	"github.com/david/mybrain/internal/projection"
+)
+
+// Diagnostic probe: temporarily place in internal/projection to reproduce phases.
+func TestDiagnosticPerformance(t *testing.T) {
+	count := func() int {
+		data, _ := os.ReadFile(os.Getenv("GIT_TRACE2_EVENT"))
+		return strings.Count(string(data), `"event":"start"`)
+	}
+	measure := func(name string, n int, fn func()) {
+		before := count()
+		start := time.Now()
+		for i := 0; i < n; i++ { fn() }
+		t.Logf("MEASURE phase=%s n=%d elapsed=%s git_starts=%d", name, n, time.Since(start), count()-before)
+	}
+	var s installation.Snapshot
+	measure("fixture", 1, func() { s, _ = snapshotSources(t) })
+	measure("load_snapshot", 3, func() { if _, err := installation.LoadSnapshot(s.Installation.Root); err != nil { t.Fatal(err) } })
+	measure("snapshot_allows", 3, func() { if err := s.Allows("private-omni", []string{"work", "work.public"}); err != nil { t.Fatal(err) } })
+	measure("realm_verify", 3, func() { if err := s.Realms["work"].Verify(); err != nil { t.Fatal(err) } })
+	var session *installation.ReadSession
+	measure("begin_read", 1, func() { var err error; session, err = installation.BeginRead(s.Installation.Root); if err != nil { t.Fatal(err) } })
+	measure("session_allows", 1000, func() { if err := session.Allows("private-omni", []string{"work", "work.public"}); err != nil { t.Fatal(err) } })
+	measure("snapshot_eligibility", 1, func() { if _, err := projection.EligibleSourcesForSnapshot(s, "private-omni"); err != nil { t.Fatal(err) } })
+	measure("session_eligibility", 1, func() { if _, err := projection.EligibleSourcesForRead(session, "private-omni"); err != nil { t.Fatal(err) } })
+	measure("finish_read", 1, func() { if err := session.Finish(); err != nil { t.Fatal(err) } })
+	measure("stage_fixture", 1, func() { _ = writeSnapshotStage(t, s) })
+}

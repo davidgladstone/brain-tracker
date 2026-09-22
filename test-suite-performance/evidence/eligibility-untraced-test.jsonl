@@ -1,0 +1,8 @@
+{"Time":"2026-09-22T22:42:45.1198489+12:00","Action":"start","Package":"github.com/david/mybrain/internal/projection"}
+{"Time":"2026-09-22T22:42:45.5389336+12:00","Action":"run","Package":"github.com/david/mybrain/internal/projection","Test":"TestSnapshotEligibilityFiltersArtifactsWithinOneMemory"}
+{"Time":"2026-09-22T22:42:45.5389336+12:00","Action":"output","Package":"github.com/david/mybrain/internal/projection","Test":"TestSnapshotEligibilityFiltersArtifactsWithinOneMemory","Output":"=== RUN   TestSnapshotEligibilityFiltersArtifactsWithinOneMemory\n"}
+{"Time":"2026-09-22T22:43:00.8746537+12:00","Action":"output","Package":"github.com/david/mybrain/internal/projection","Test":"TestSnapshotEligibilityFiltersArtifactsWithinOneMemory","Output":"--- PASS: TestSnapshotEligibilityFiltersArtifactsWithinOneMemory (15.34s)\n"}
+{"Time":"2026-09-22T22:43:00.8746537+12:00","Action":"pass","Package":"github.com/david/mybrain/internal/projection","Test":"TestSnapshotEligibilityFiltersArtifactsWithinOneMemory","Elapsed":15.34}
+{"Time":"2026-09-22T22:43:00.8746537+12:00","Action":"output","Package":"github.com/david/mybrain/internal/projection","Output":"PASS\n"}
+{"Time":"2026-09-22T22:43:00.8813589+12:00","Action":"output","Package":"github.com/david/mybrain/internal/projection","Output":"ok  \tgithub.com/david/mybrain/internal/projection\t15.762s\n"}
+{"Time":"2026-09-22T22:43:00.8813589+12:00","Action":"pass","Package":"github.com/david/mybrain/internal/projection","Elapsed":15.762}
