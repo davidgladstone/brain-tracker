@@ -15,10 +15,10 @@ The destination is the design boundary, not implementation, provider selection, 
 ## Decisions so far
 
 - [Define the Controlled Tag contract](./issues/01-controlled-tag-contract.md): Controlled Tags are flat stable labels with precise inclusion/exclusion boundaries and examples; optional handling guidance is an advisory manual-review hint, while Audience ACLs remain the access mechanism.
+- [Choose Controlled Tag scope and qualification](./issues/02-realm-scope-and-qualification.md): Definitions are Realm-local; bare Realm tags become Realm-qualified at the Installation boundary, and matching names across Realms remain independent.
 
 ## Not yet specified
 
-- Whether Controlled Tag definitions are strictly Realm-local or can be shared across Realms.
 - Whether classification is assigned to Memories, Artifacts, or both, and how those decisions compose.
 - How the LLM handles multi-label results, abstention, unknown concepts, and proposed new tags.
 - How accepted classification affects curation eligibility, publication invalidation, and retrieval.
