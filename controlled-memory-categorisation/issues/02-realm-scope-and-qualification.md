@@ -1,7 +1,8 @@
 # Choose Controlled Tag scope and qualification
 
 Type: grilling
-Status: open
+Status: claimed
+Assignee: Codex
 Labels: wayfinder:grilling
 
 ## Question
