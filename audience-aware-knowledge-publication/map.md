@@ -12,6 +12,8 @@ This is a domain-modeling and human-in-the-loop design effort. Use the vocabular
 
 The destination is the design boundary, not implementation, provider selection, storage migration, or UI work.
 
+Standing safety constraint: reclassification or policy change that removes an Artifact from an Audience immediately revokes the affected Audience Publication. Unrewritten Knowledge Variants and Area summaries must not remain readable; republishing must regenerate affected Areas bottom-up through the root.
+
 ## Decisions so far
 
 - [Audience-aware curation and trust projections](../../docs/superpowers/specs/2026-09-06-audience-aware-curation-design.md): Audiences receive separate Knowledge and Area projections; curation is independently authorized per audience; incremental curation and Dreaming have different breadth; Areas are many-to-one indexes with bottom-up summaries.
