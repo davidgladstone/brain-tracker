@@ -18,6 +18,7 @@ Standing safety constraint: reclassification or policy change that removes an Ar
 
 ## Decisions so far
 
+- [Define publication and re-curation lifecycle for audience projections](./issues/05-publication-and-recuration-lifecycle.md): reads fail closed after revocation, publication switches are atomic, summaries propagate bottom-up, and the current safe implementation pays for this with full-corpus regeneration and conservative audience invalidation.
 - [Audience-aware curation and trust projections](../../docs/superpowers/specs/2026-09-06-audience-aware-curation-design.md): Audiences receive separate Knowledge and Area projections; curation is independently authorized per audience; incremental curation and Dreaming have different breadth; Areas are many-to-one indexes with bottom-up summaries.
 - [Define classification enforcement across curation and retrieval](../controlled-memory-categorisation/issues/06-curation-and-retrieval-enforcement.md): authorization evaluates each Artifact's possible classification, denied Artifacts behave as absent, and a derived Knowledge Variant carries the union of contributing classifications.
 - [Define Memory and Artifact classification composition](../controlled-memory-categorisation/issues/04-assignment-and-composition.md): Memory views contain only eligible Artifacts, hide Memory metadata, and derived knowledge uses only the eligible contributing Artifacts.
