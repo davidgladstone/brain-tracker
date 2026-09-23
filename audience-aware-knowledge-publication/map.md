@@ -10,6 +10,8 @@ Produce an implementable design/spec for audience-specific curation: determinist
 
 This is a domain-modeling and human-in-the-loop design effort. Use the vocabulary in `CONTEXT.md`: `Audience`, `Audience Access Policy`, `Audience-visible Memory`, `Knowledge Projection`, `Knowledge Variant`, `Area`, `Publication`, and `Catalog`. Reconcile the existing audience-aware curation and knowledge-kernel specs before proposing new behavior. Authorization remains deterministic; an LLM may select, synthesize, place, or summarize only after deterministic eligibility filtering.
 
+Human concern: the safety-first invalidation and rewrite approach may have significant performance and usability costs. Those costs must be made visible and addressed without weakening the no-leakage guarantee.
+
 The destination is the design boundary, not implementation, provider selection, storage migration, or UI work.
 
 Standing safety constraint: reclassification or policy change that removes an Artifact from an Audience immediately revokes the affected Audience Publication. Unrewritten Knowledge Variants and Area summaries must not remain readable; republishing must regenerate affected Areas bottom-up through the root.
@@ -30,6 +32,7 @@ Standing safety constraint: reclassification or policy change that removes an Ar
 - How synthesis preserves provenance, represents disagreement or temporal change, and avoids turning an editorial summary into canonical truth.
 - The contract for Area placement, hierarchy changes, and summary generation when knowledge is shared across Areas or when a descendant is not visible to the audience.
 - Which incremental and Dreaming operations are permitted to rewrite existing variants or Areas, and how human preferences survive automatic maintenance.
+- How immediate revocation and hierarchical rewrites affect latency, availability, operational load, and user experience, and which safe optimizations or progressive states can mitigate those costs.
 
 ## Out of scope
 
