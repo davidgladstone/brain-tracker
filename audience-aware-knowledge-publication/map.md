@@ -12,9 +12,9 @@ This is a domain-modeling and human-in-the-loop design effort. Use the vocabular
 
 Human concern: the safety-first invalidation and rewrite approach may have significant performance and usability costs. Those costs must be made visible and addressed through an explicit Installation availability policy rather than an accidental mixture of old and new authorization state.
 
-The destination is the design boundary, not implementation, provider selection, storage migration, or UI work.
+The destination is the design boundary, not provider selection, storage migration, or UI work. Implementation follow-ons are tracked as task tickets after the design decisions are accepted.
 
-Standing publication constraint: every Publication is an internally consistent atomic snapshot. Content drift and coverage drift do not make the selected Publication unavailable. A classification, Audience Access Policy, Realm availability, or provenance change that may make selected material unauthorized creates safety drift; the Installation's `safety_drift_grace_period` controls whether the previous complete Publication remains serveable, with `0s` failing closed immediately. Republished Areas and summaries must be rebuilt consistently through the affected hierarchy; a grace-served revision must never be mixed with a partially rebuilt or partially reauthorized view.
+Standing publication constraint: every Publication is an internally consistent atomic snapshot. Content drift and coverage drift do not make the selected Publication unavailable and are not exposed as MCP response flags. A classification, Audience Access Policy, Realm availability, or provenance change that may make selected material unauthorized creates safety drift; the Installation's `safety_drift_grace_period` controls whether the previous complete Publication remains serveable, with `0s` failing closed immediately. Republished Areas and summaries must be rebuilt consistently through the affected hierarchy; a grace-served revision must never be mixed with a partially rebuilt or partially reauthorized view.
 
 ## Decisions so far
 
@@ -33,9 +33,9 @@ Standing publication constraint: every Publication is an internally consistent a
 - The precise relevance contract between an Audience's curation brief and eligible Artifacts, including whether selection is per Artifact, per Memory, or per emerging topic and how partial Memory views are handled.
 - The identity and lifecycle of a Knowledge Variant synthesized from multiple related Memories: topic boundaries, stable identity across rewrites, split/merge behavior, and source-version invalidation.
 - How synthesis preserves provenance, represents disagreement or temporal change, and avoids turning an editorial summary into canonical truth.
-- The contract for Area placement, hierarchy changes, and summary generation when knowledge is shared across Areas or when a descendant is not visible to the audience.
+- The contract for Area placement, hierarchy changes, and summary generation when knowledge is shared across Areas or when a descendant is not visible to the audience; this must preserve complete-revision serving under ADR 0014 rather than exposing a partial tree.
 - Which incremental and Dreaming operations are permitted to rewrite existing variants or Areas, and how human preferences survive automatic maintenance.
-- How immediate revocation and hierarchical rewrites affect latency, availability, operational load, and user experience, and which safe optimizations or progressive states can mitigate those costs.
+- Which dependency-targeted rebuilds, reusable profiles, batching, and Catalog strategies reduce latency and operational load while preserving provenance, coverage, atomic Publications, and the configured safety-drift grace period.
 
 ## Out of scope
 
