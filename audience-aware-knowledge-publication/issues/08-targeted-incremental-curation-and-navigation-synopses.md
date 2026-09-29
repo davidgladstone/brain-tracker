@@ -41,6 +41,8 @@ Incremental Curation and Area-owned navigation synopses.
 
 ## Dependencies
 
-- Depends on the publication drift and availability implementation in issue 07.
+- Compatible with the publication drift and availability implementation in
+  issue 07; it does not need to wait for that work because staging, complete
+  validation, and atomic publication already provide its safety seam.
 - Uses the resolved source, Variant, provenance, and Area contracts in issues
   01-04.
