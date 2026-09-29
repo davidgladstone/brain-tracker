@@ -1,0 +1,46 @@
+# Implement targeted Incremental Curation and navigation synopses
+
+Type: task
+Status: claimed
+Labels: wayfinder:task, ready-for-agent
+
+## What to build
+
+Implement the resolved audience-publication decisions for targeted
+Incremental Curation and Area-owned navigation synopses.
+
+## Requirements
+
+- Use published Variant provenance to identify the affected Variant dependency
+  closure for changed Artifacts.
+- Regenerate affected Variants and affected Area ancestors only; preserve
+  unaffected Variants and Areas by copying them into staging.
+- Handle a newly eligible Artifact by attaching it to an existing coherent
+  retrieval unit or creating a new Variant/Area; use a full Audience rebuild
+  when the impact cannot be determined safely.
+- Generate short synopses for Variant links and child-Area links. Keep these
+  synopses in Area navigation documents rather than adding a navigation-summary
+  field to `KnowledgeVariant`.
+- Process Area synopses bottom-up. Reuse exact-hash matches without model work;
+  retain the prior synopsis when semantic comparison says the meaning is
+  materially unchanged; propagate only material changes to ancestors. Treat
+  comparison failure or uncertainty conservatively as a change.
+- Always validate the complete staged Projection before atomic publication,
+  including copied unaffected material.
+
+## Verification
+
+- A single Artifact update does not regenerate unrelated Variants or Areas.
+- A changed multi-Artifact Variant and all affected Area ancestors are rebuilt.
+- A revoked Artifact is absent from regenerated Variant bodies, provenance, and
+  navigation synopses.
+- Unchanged Areas retain their bytes and do not invoke synopsis comparison.
+- A semantically unchanged leaf synopsis does not trigger ancestor model work.
+- Structural link changes still publish even when prose remains equivalent.
+- Failed validation leaves the prior complete Publication selected.
+
+## Dependencies
+
+- Depends on the publication drift and availability implementation in issue 07.
+- Uses the resolved source, Variant, provenance, and Area contracts in issues
+  01-04.
