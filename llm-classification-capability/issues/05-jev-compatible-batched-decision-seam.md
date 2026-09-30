@@ -1,7 +1,7 @@
 # Introduce a JEV-compatible batched decision seam
 
 Type: task
-Status: open
+Status: resolved
 Labels: wayfinding:task, ready-for-agent
 
 ## What to build
@@ -47,3 +47,9 @@ leak into classification or curation callers.
 - Existing classification tests for abstention, zero-tag results, retries,
   policy enforcement, and fail-closed Audience eligibility remain green.
 - The implementation does not require a live JEV service for ordinary tests.
+
+## Comments
+
+- Added the provider-neutral `llm.DecisionRuntime`/`DecisionAdapter` seam for typed `noul`, `choice`, and `score` questions, including bounded batch evaluation with input-order preservation, correlation IDs, row-scoped errors, and fail-closed validation.
+- Classification now issues one fixed `choice` question per configured Controlled Tag and normalizes typed answers into the existing `ClassificationResult` and `domain.TagAssessment` structures. The OpenAI-compatible adapter keeps typed wire shapes private and retains legacy response parsing for compatibility.
+- Added ADR 0018 and offline unit/adapter coverage. `go test ./... -count=1` passes across the repository.
