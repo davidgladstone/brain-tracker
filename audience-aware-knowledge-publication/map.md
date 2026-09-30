@@ -37,8 +37,10 @@ Standing publication constraint: every Publication is an internally consistent a
 
 - Add Area-owned Variant and child-Area link synopses, with exact input hashes and semantic comparison that stops unchanged synopsis propagation before it reaches ancestors.
 - Replace full-corpus Incremental Curation with dependency-targeted regeneration: use published Variant provenance to find affected Variants, update affected Area ancestors bottom-up, preserve unaffected material, and retain full staged validation with a safe full-Audience fallback.
-- Keep Dreaming as the broad reorganization path for global regrouping, split/merge decisions, and retrieval-cost optimization.
-- Keep semantic profiles, dependency indexes, and Catalog data Installation-local and rebuildable; none may replace canonical authorization or provenance validation.
+- [Implement Artifact semantic profiles and targeted placement](./issues/09-artifact-semantic-profiles-and-targeted-placement.md): generate reusable Installation-local Artifact profiles and use them to attach newly eligible material to bounded Variant and Area work without rebuilding an entire Audience.
+- [Implement the bounded Dreaming controller](./issues/10-bounded-dreaming-controller.md): make Dreaming fingerprint-aware, resumable, budgeted, and fair across multiple Audiences and attached Realms, with partial work-unit boundaries and atomic publication.
+- [Add Navigation usage and adaptive retrieval](./issues/11-navigation-usage-and-adaptive-retrieval.md): record decayed Audience-scoped retrieval usage and use it only for ranking, promotion, and bounded Dreaming triggers, never for authorization or Variant facts.
+- Keep semantic profiles, dependency indexes, usage telemetry, and Catalog data Installation-local and rebuildable; none may replace canonical authorization or provenance validation.
 
 ## Out of scope
 

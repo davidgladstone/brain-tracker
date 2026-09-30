@@ -12,3 +12,7 @@ Close the implementation gaps between the classification domain model and the pr
 - [Verify live provider compatibility on demand](./issues/04-live-provider-smoke-test.md): an explicitly enabled smoke test checks a configured OpenAI-compatible endpoint without making ordinary tests depend on credentials or network access.
 
 All four tickets are independent and can start immediately.
+
+## Implementation follow-ons
+
+- [Introduce a JEV-compatible batched decision seam](./issues/05-jev-compatible-batched-decision-seam.md): represent one state with multiple typed Noul, Choice, or Score questions, support repeated question sets over many Artifact rows, and normalize provider answers into the existing deterministic classification domain.
