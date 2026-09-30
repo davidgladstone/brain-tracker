@@ -2,7 +2,7 @@
 
 Type: task
 Status: open
-Labels: wayfinding:task, ready-for-agent
+Labels: wayfinder:task, ready-for-agent
 
 **Blocked by:** 08, 09
 
