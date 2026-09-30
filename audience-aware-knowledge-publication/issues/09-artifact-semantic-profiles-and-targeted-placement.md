@@ -4,8 +4,6 @@ Type: task
 Status: open
 Labels: wayfinder:task, ready-for-agent
 
-**Blocked by:** 08
-
 ## What to build
 
 Implement the Installation-local Artifact semantic-profile cache and use it to

@@ -4,7 +4,7 @@ Type: task
 Status: open
 Labels: wayfinder:task, ready-for-agent
 
-**Blocked by:** 08, 09
+**Blocked by:** 09
 
 ## What to build
 
