@@ -1,7 +1,7 @@
 # Implement publication drift and safety-drift availability
 
 Type: task
-Status: open
+Status: resolved
 Labels: wayfinder:task
 
 ## What to build
@@ -57,3 +57,14 @@ and the publication vocabulary in [`CONTEXT.md`](../../../CONTEXT.md).
 - New classification or Audience Access Policy semantics.
 - Exposing content-drift, coverage-drift, or safety-drift flags in ordinary MCP
   retrieval responses.
+
+## Comments
+
+- 2026-10-01: Verified the Installation-local grace-period configuration,
+  persisted detection deadline, prior-revision serving, and Catalog behavior.
+  The prior-revision reader now rejects the entire Audience if a variant fails
+  provenance validation during grace, preserving complete-publication
+  semantics. Focused Installation, Catalog, Projection, Curation, and MCP
+  packages passed; the full suite is blocked only by existing Windows Git
+  clone tests failing with `couldn't create signal pipe`. Implementation is in
+  application commits `13920b3` and `69ddcb3`.
