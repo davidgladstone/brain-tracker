@@ -1,8 +1,8 @@
-# Combine semantic profiling and classification
+# Analyze Artifacts before typed classification
 
 Type: grilling
 Status: claimed
 
 ## Question
 
-Should Artifact semantic profiling and classification share one LLM request where the configured provider supports it, or remain separate operations? Resolve how either choice fits the JEV-compatible typed-decision API, including the distinct outputs, validation, caching, retries, and providers that support only one operation. Account for the cost of processing the same Artifact text more than once and preserve deterministic classification authority.
+Should Brain add a classification-aware Artifact Analysis stage that produces a concise summary and useful evidence in one LLM call, followed by a cheaper Realm-specific JEV-style classification judgment? Decide what evidence the second call may rely on, how analysis is scoped and invalidated when Realm classification inputs change, how uncertainty or missing details are handled, and how both provider capabilities and deterministic classification authority are preserved.
