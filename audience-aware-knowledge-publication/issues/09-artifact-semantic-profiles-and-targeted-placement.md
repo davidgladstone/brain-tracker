@@ -1,7 +1,7 @@
 # Implement Artifact semantic profiles and targeted placement
 
 Type: task
-Status: open
+Status: resolved
 Labels: wayfinder:task, ready-for-agent
 
 ## What to build
@@ -43,3 +43,15 @@ and embeddings, but they are never an authorization or provenance authority.
   an Audience model call.
 - An ambiguous candidate set takes the safe full-Audience path and preserves
   atomic publication behavior.
+
+## Comments
+
+- 2026-10-01: Reused Installation-local profiles by content hash and analyzer
+  version, with normalized-term and digest validation before cache reuse.
+  Strong unique matches regenerate only the existing Variant and Area
+  ancestors; no-match sources generate bounded new Variant units and link from
+  the existing root Area. Ambiguous matches or generated-ID conflicts retain
+  the safe full-Audience fallback. Focused profile, curation, and projection
+  suites passed; full-suite failures remain the Windows Git clone
+  `couldn't create signal pipe` environment issue. Implementation is in
+  application commits `13920b3` and `eae2688`.
