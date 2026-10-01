@@ -1,7 +1,7 @@
 # Combine semantic profiling and classification
 
 Type: grilling
-Status: open
+Status: claimed
 
 ## Question
 
