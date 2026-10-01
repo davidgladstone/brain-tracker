@@ -1,10 +1,8 @@
 # Implement the bounded Dreaming controller
 
 Type: task
-Status: open
+Status: resolved
 Labels: wayfinder:task, ready-for-agent
-
-**Blocked by:** 09
 
 ## What to build
 
@@ -54,3 +52,14 @@ that scope.
 - Multiple Audiences and Realms receive fair scheduling under a constrained
   work budget.
 - A model cannot expand a partial scope beyond its deterministic boundary.
+
+## Comments
+
+- 2026-10-01: Added resumable checkpoints for the planned Area tree, Area
+  summaries, and Knowledge synopses. Each retry reuses completed finalization
+  work and unchanged published Variants/Areas, while full Projection
+  validation and atomic Audience publication remain the commit boundary.
+  Generation, finalization, and summarizer versions invalidate the relevant
+  checkpoints. Curation and projection suites passed. The full suite's failures
+  are limited to Windows Git for Windows clone tests failing to create a signal
+  pipe (`Win32 error 5`). Application commit: `78be902`.
