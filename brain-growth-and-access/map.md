@@ -13,6 +13,7 @@ Related work: the LLM classification maps define the current classification cont
 ## Decisions so far
 
 - [01: Analyze Artifacts before typed classification](issues/01-combine-semantic-profiling-and-classification.md) is resolved. The classifier module runs structured Artifact Analysis, feeds its compact summary to a typed classification judgment, and retries uncertain/abstaining results once with exact source excerpts. It also derives the Installation-shared semantic profile from the analysis response, without another profile LLM call.
+- [02: Understand and preprocess non-text Artifacts](issues/02-understand-and-preprocess-non-text-artifacts.md) is resolved. Use a format-neutral hybrid processing extension point; keep the original payload and one direct or processor-produced Text representation with the Artifact in the Realm, recording the process category used.
 
 ## Not yet specified
 
