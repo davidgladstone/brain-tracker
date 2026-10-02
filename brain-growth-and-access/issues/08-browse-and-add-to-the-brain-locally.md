@@ -1,7 +1,7 @@
 # Browse and add to the Brain locally
 
 Type: prototype
-Status: open
+Status: claimed
 Blocked by: 02, 06, 07
 
 ## Question
