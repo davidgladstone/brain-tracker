@@ -1,7 +1,8 @@
 # Keep the Catalog in sync and rebuildable
 
 Type: grilling
-Status: open
+Status: claimed
+Claimed by: Codex
 
 ## Question
 
