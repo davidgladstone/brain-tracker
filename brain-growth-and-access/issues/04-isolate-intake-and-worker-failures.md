@@ -1,7 +1,8 @@
 # Isolate Intake and worker failures
 
 Type: grilling
-Status: open
+Status: claimed
+Claimed by: Codex
 
 ## Question
 
