@@ -1,7 +1,7 @@
 # Understand and preprocess non-text Artifacts
 
 Type: grilling
-Status: open
+Status: claimed
 
 ## Question
 
