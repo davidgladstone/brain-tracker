@@ -1,7 +1,8 @@
 # Configure provider parallelism
 
 Type: grilling
-Status: open
+Status: claimed
+Claimed by: Codex
 
 ## Question
 
