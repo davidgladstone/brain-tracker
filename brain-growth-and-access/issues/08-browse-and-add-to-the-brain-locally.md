@@ -7,3 +7,8 @@ Blocked by: 02, 06, 07
 ## Question
 
 What should a simple local website provide for browsing Brain content and adding content? Explore navigation where Areas and Knowledge Variants are readable pages, plus a clear path to add a note, URL, or file to a Realm. Make the interaction concrete enough to assess navigation, Intake progress and failure feedback, and how a user chooses the target Realm, while respecting existing authorization and publication boundaries.
+
+## Comments
+
+- Prototype captured on application branch prototype/browse-add-to-brain: outputs/prototype-browse-add-brain/index.html. It offers three mock-only browse layouts and a note/link/file flow with Realm ownership, Intake status, review, and Publication boundaries made visible. The prototype contains no persistence or backend calls.
+
