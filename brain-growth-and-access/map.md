@@ -18,11 +18,13 @@ Related work: the LLM classification maps define the current classification cont
 - [Isolate Intake and worker failures](issues/04-isolate-intake-and-worker-failures.md) is resolved. Processing failures stay visible per item, and delayed retries do not block eligible work; retry policy distinguishes failures to connect from provider errors and connected timeouts.
 - [Configure provider parallelism](issues/05-configure-provider-parallelism.md) is resolved. Provider-scoped concurrency is gated by a shared in-memory dispatcher with a default of 1 and a current maximum of 2; durable work queues retain retry and restart recovery.
 - [Retire obsolete Publication data](issues/06-retire-obsolete-publication-data.md) is resolved. Keep superseded revisions only for a configurable five-minute in-flight read grace; all reads remain gated by the selected Publication's safety-drift availability, and older revisions are not rollback targets.
+- [Keep the Catalog in sync and rebuildable](issues/07-keep-the-catalog-in-sync-and-rebuildable.md) is resolved. Keep SQLite FTS5 with full atomic rebuilds, coalesced in-memory repair, and matching Catalog generations for pinned reads during the superseded-Publication grace; remove MCP request traces.
 
 ## Not yet specified
 
 - Which capabilities should be prioritized for implementation, and whether any need to be split into separately deliverable efforts.
 - How much of the web UI should be a read-only browser versus an alternate Intake surface, including the supported actions and local access model.
+- How every LLM call should be accounted for, including which calls and details the accounting covers and how those records are accessed and retained.
 
 ## Out of scope
 
