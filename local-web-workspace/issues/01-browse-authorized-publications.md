@@ -7,6 +7,10 @@
 **Status:** ready-for-agent
 
 - [ ] The UI and same-origin API are served by the existing loopback daemon without requiring a second web server.
+- [ ] The web adapter is independently constructible and exposes a standard `http.Handler`; daemon startup composes it without owning its routing or business behavior.
+- [ ] Read/application dependencies, configuration, and static assets are explicit inputs; the web adapter has no daemon lifecycle, direct storage, or mutable-global dependency.
+- [ ] A test can host the same handler outside daemon startup with the same HTTP contract, while a daemon composition test verifies production mounting.
+- [ ] Application modules remain independent of HTTP/browser types, so the web adapter can move to a separate process without moving domain or workflow logic.
 - [ ] Read requests use authorized read services and expose only the selected Profile's currently permitted Publication.
 - [ ] Browse supports Audience root Area, child Areas, direct Pages, Knowledge Variant detail, and its authorized Sources with update dates.
 - [ ] Navigation collapses fully, resizes with a minimum width, and remains keyboard accessible.

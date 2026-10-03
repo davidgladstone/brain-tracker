@@ -43,7 +43,9 @@ The UI retains the reviewed prototype direction: a Profile-scoped Browse tree, c
 
 ## Implementation Decisions
 
-- The existing loopback daemon is the process boundary for both static browser assets and the HTTP API. The API is same-origin with the browser UI.
+- The existing loopback daemon hosts both static browser assets and the HTTP API in one process. This is a host choice, not a module boundary: the web adapter is a separately constructible Go module that exposes a standard `http.Handler`, and the daemon only composes that handler into its server.
+- The web adapter receives read/application-operation interfaces, configuration, and static assets through explicit construction dependencies. It does not reach into daemon lifecycle, installation storage, sibling handlers, or mutable process globals. A future server can host the same handler and HTTP contract by supplying the same dependencies.
+- Keep transport mapping and response types in the web adapter; keep policy and workflow behavior in the shared read/application modules. Do not make application modules depend on HTTP or browser types.
 - Browser code remains HTML, CSS, and JavaScript with no Python runtime or frontend framework for the first implementation. Reconsider a compiled TypeScript toolchain only if browser-side complexity warrants it.
 - The web adapter is a thin adapter over shared read and application modules. It does not call the CLI or MCP adapter and does not duplicate domain policy.
 - Read operations use authorized read services and the currently permitted Audience Publication. Search uses the Catalog as a rebuildable index, then returns only currently authorized results.
@@ -60,7 +62,8 @@ The UI retains the reviewed prototype direction: a Profile-scoped Browse tree, c
 
 ## Testing Decisions
 
-- The principal test seam is the daemon's HTTP boundary, exercising complete requests against a temporary Installation. This keeps the test at one high-level seam while covering routing, read authorization, operation invocation, and structured responses.
+- The principal test seam is the web adapter's standard `http.Handler`, exercised with complete requests and a temporary Installation. This verifies behavior independently of daemon process hosting and keeps extraction possible without replacing its tests.
+- Retain a small daemon composition test proving that the production daemon mounts the independently constructible handler and serves the same HTTP contract. Do not make the majority of web behavior tests depend on daemon startup or daemon-specific state.
 - Tests assert externally visible behavior: only permitted Publication data is returned; search cannot reveal unauthorized names or snippets; mutations produce the expected durable domain state and queue transitions; malformed, cross-origin, or unauthorized requests fail safely; and redacted operational responses do not contain secrets or source content.
 - Reuse existing daemon HTTP integration tests and application/read-service behavior as prior art. Add browser-flow smoke coverage only where an HTTP integration test cannot verify the end-user flow; avoid tests coupled to internal handler functions or markup implementation details.
 - Manual review should cover the selected Profile, resizable/collapsible navigation, long tag descriptions, confirmation flows, responsive layouts, keyboard access, and understandable empty/error/loading states.
@@ -76,5 +79,6 @@ The UI retains the reviewed prototype direction: a Profile-scoped Browse tree, c
 ## Further Notes
 
 - This spec is based on the reviewed local browser prototype and the user's accumulated feedback. Prototype data and simulated actions are not implementation behavior.
-- The selected same-origin daemon seam satisfies the user's preference to keep the API in Go while allowing a light browser implementation.
+- The selected single-process host satisfies the user's preference to keep the API in Go. The independently constructible web handler and explicit dependencies keep the website separable for future process hosting without coupling workflow behavior to either host.
+- This hosting and module-boundary decision follows ADR 0009, which assigns workflows to reusable application modules and leaves process hosting as an adapter concern; no additional ADR is needed.
 - Ticket dependencies identify feature prerequisites only. Current persistence semantics and operation contracts remain owned by the existing application modules and domain decisions.

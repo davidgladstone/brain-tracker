@@ -19,7 +19,7 @@ Related work: the LLM classification maps define the current classification cont
 - [Configure provider parallelism](issues/05-configure-provider-parallelism.md) is resolved. Provider-scoped concurrency is gated by a shared in-memory dispatcher with a default of 1 and a current maximum of 2; durable work queues retain retry and restart recovery.
 - [Retire obsolete Publication data](issues/06-retire-obsolete-publication-data.md) is resolved. Keep superseded revisions only for a configurable five-minute in-flight read grace; all reads remain gated by the selected Publication's safety-drift availability, and older revisions are not rollback targets.
 - [Keep the Catalog in sync and rebuildable](issues/07-keep-the-catalog-in-sync-and-rebuildable.md) is resolved. Keep SQLite FTS5 with full atomic rebuilds, coalesced in-memory repair, and matching Catalog generations for pinned reads during the superseded-Publication grace; remove MCP request traces.
-- Local browser workspace scope is resolved in the [implementation spec](../local-web-workspace/spec.md): serve HTML/CSS/JavaScript and a same-origin API from the loopback daemon; use authorized read services and shared application operations; keep the API in Go and avoid a separate Python server.
+- Local browser workspace scope is resolved in the [implementation spec](../local-web-workspace/spec.md): serve HTML/CSS/JavaScript and a same-origin API from the loopback daemon; expose the website as an independently constructible Go `http.Handler` with explicit dependencies so it can move to a separate process later; use authorized read services and shared application operations.
 
 ## Not yet specified
 
