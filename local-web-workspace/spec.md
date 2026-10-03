@@ -4,7 +4,7 @@ People need a local browser interface for reading the Brain, adding source mater
 
 ## Solution
 
-Serve a browser UI and its same-origin HTTP API from the existing loopback daemon. Keep browser assets as HTML, CSS, and JavaScript without introducing a Python web server or a frontend framework for the first implementation. The daemon adapter reads through the authorized read service and performs mutations through shared application operations. Build user-visible vertical slices for Browse, Search, Intake, exception review, Audience/Profile policy, Realm configuration, workflow operations, and source lifecycle.
+Keep the HTTP API in the existing loopback daemon and serve the initial browser UI from that daemon as a separate static client. The UI talks to the API through its documented HTTP contract; it does not import Go/domain code or access Installation storage directly. This lets the UI assets be replaced or another UI be developed over the same API without moving the API or changing workflow behavior. Keep browser assets as HTML, CSS, and JavaScript without introducing a Python web server or a frontend framework for the first implementation. The daemon's API adapter reads through the authorized read service and performs mutations through shared application operations. Build user-visible vertical slices for Browse, Search, Intake, exception review, Audience/Profile policy, Realm configuration, workflow operations, and source lifecycle.
 
 The UI retains the reviewed prototype direction: a Profile-scoped Browse tree, compact collapsible and resizable navigation, inline Area synopses, a nearby Intake panel, and a Manage destination. All browser routes use the same local Installation and its existing authorization and Publication rules.
 
@@ -40,12 +40,15 @@ The UI retains the reviewed prototype direction: a Profile-scoped Browse tree, c
 28. As an operator, I want to archive and unarchive a Source, so that I can reversibly exclude its material from knowledge generation while retaining an explicit administrative search path.
 29. As an operator, I want to delete a connector-managed Source at its origin and remove its Brain-retained content, so that a later synchronization cannot reintroduce it.
 30. As an operator, I want a failed or unsupported origin deletion to leave the connector-managed Source intact and clearly report the failure, so that local deletion cannot be mistaken for complete removal.
+31. As a local Brain user or developer, I want the UI to consume a documented HTTP API independently of the Go implementation, so that the UI can be replaced or another UI can use the same API.
 
 ## Implementation Decisions
 
-- The existing loopback daemon hosts both static browser assets and the HTTP API in one process. This is a host choice, not a module boundary: the web adapter is a separately constructible Go module that exposes a standard `http.Handler`, and the daemon only composes that handler into its server.
-- The web adapter receives read/application-operation interfaces, configuration, and static assets through explicit construction dependencies. It does not reach into daemon lifecycle, installation storage, sibling handlers, or mutable process globals. A future server can host the same handler and HTTP contract by supplying the same dependencies.
-- Keep transport mapping and response types in the web adapter; keep policy and workflow behavior in the shared read/application modules. Do not make application modules depend on HTTP or browser types.
+- The HTTP API remains hosted by the existing loopback daemon. The initial static browser UI is a separate client that the daemon serves from the same origin.
+- Keep UI assets/build output separate from Go API and application packages. The UI communicates only through the documented HTTP/JSON contract; it does not import Go/domain types or access Installation storage directly.
+- The daemon composes API routes and static UI serving, but their code and contracts remain distinct. An alternate UI can replace the static client or be developed against the same API without moving the API into another process.
+- The API adapter receives read/application-operation interfaces through explicit construction dependencies; it does not reach into unrelated daemon handlers or mutable process globals. The API remains in the daemon process.
+- Keep transport mapping and response types in the API adapter; keep policy and workflow behavior in the shared read/application modules. Do not make application modules depend on HTTP or browser types.
 - Browser code remains HTML, CSS, and JavaScript with no Python runtime or frontend framework for the first implementation. Reconsider a compiled TypeScript toolchain only if browser-side complexity warrants it.
 - The web adapter is a thin adapter over shared read and application modules. It does not call the CLI or MCP adapter and does not duplicate domain policy.
 - Read operations use authorized read services and the currently permitted Audience Publication. Search uses the Catalog as a rebuildable index, then returns only currently authorized results.
@@ -58,12 +61,12 @@ The UI retains the reviewed prototype direction: a Profile-scoped Browse tree, c
 - Archive is reversible, excludes a Source from knowledge generation, and remains available through an explicit administrative Search filter. Deleting a connector-managed Source must delete at origin first and remove Brain-retained data and dependent projections only after origin success; unsupported or failed origin deletion leaves the Source intact. The UI must never imply a later sync cannot reintroduce content unless origin deletion is confirmed. Connector implementations and credential setup are outside this delivery, so origin deletion becomes available only when an owning integration supports it.
 - Git remains for explicit Realm initialization/attachment setup, backup, and synchronization. Ordinary Intake, classification, curation, publication, and retrieval do not depend on Git or a remote, consistent with ADR 0007.
 - Do not expose LLM-call accounting in this delivery; its scope and retention remain undecided on the exploration map.
-- The local HTTP boundary validates loopback/host/origin expectations, does not enable cross-origin access, and protects state-changing requests from cross-site browser initiation. Responses must preserve existing redaction rules.
+- The local HTTP boundary validates loopback/host/origin expectations, does not enable cross-origin access for the current same-origin UI, and protects state-changing requests from cross-site browser initiation. Any future UI hosted at a different origin needs an explicit origin allowlist and request-protection design; do not enable wildcard CORS. Responses must preserve existing redaction rules.
 
 ## Testing Decisions
 
-- The principal test seam is the web adapter's standard `http.Handler`, exercised with complete requests and a temporary Installation. This verifies behavior independently of daemon process hosting and keeps extraction possible without replacing its tests.
-- Retain a small daemon composition test proving that the production daemon mounts the independently constructible handler and serves the same HTTP contract. Do not make the majority of web behavior tests depend on daemon startup or daemon-specific state.
+- The principal API test seam is its standard `http.Handler`, exercised with complete requests and a temporary Installation. This verifies the API contract without coupling behavior tests to daemon startup.
+- Retain a daemon composition test proving that the production daemon serves the API and static UI at the intended same origin. Verify the UI consumes the HTTP contract rather than relying on server-side Go coupling.
 - Tests assert externally visible behavior: only permitted Publication data is returned; search cannot reveal unauthorized names or snippets; mutations produce the expected durable domain state and queue transitions; malformed, cross-origin, or unauthorized requests fail safely; and redacted operational responses do not contain secrets or source content.
 - Reuse existing daemon HTTP integration tests and application/read-service behavior as prior art. Add browser-flow smoke coverage only where an HTTP integration test cannot verify the end-user flow; avoid tests coupled to internal handler functions or markup implementation details.
 - Manual review should cover the selected Profile, resizable/collapsible navigation, long tag descriptions, confirmation flows, responsive layouts, keyboard access, and understandable empty/error/loading states.
@@ -79,6 +82,6 @@ The UI retains the reviewed prototype direction: a Profile-scoped Browse tree, c
 ## Further Notes
 
 - This spec is based on the reviewed local browser prototype and the user's accumulated feedback. Prototype data and simulated actions are not implementation behavior.
-- The selected single-process host satisfies the user's preference to keep the API in Go. The independently constructible web handler and explicit dependencies keep the website separable for future process hosting without coupling workflow behavior to either host.
-- This hosting and module-boundary decision follows ADR 0009, which assigns workflows to reusable application modules and leaves process hosting as an adapter concern; no additional ADR is needed.
+- The selected single-process host keeps the API in Go and in the daemon. The browser UI is a separate client over its HTTP contract, so its assets can be replaced or another UI can be built without moving the API or coupling workflow behavior to a particular client.
+- This boundary follows ADR 0009, which assigns workflows to reusable application modules and keeps adapters thin; no additional ADR is needed for the replaceable UI client.
 - Ticket dependencies identify feature prerequisites only. Current persistence semantics and operation contracts remain owned by the existing application modules and domain decisions.
