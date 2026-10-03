@@ -52,3 +52,5 @@ What should a simple local website provide for browsing Brain content and adding
 - Follow-up: clarified the rail action as Collapse/Expand navigation and fixed the collapsed desktop grid so Browse or Manage content keeps its full width beside Intake when the rail is hidden.
 
 - Navigation affordance follow-up: replaced the inline text action with a square, blue-outlined sidebar icon at the start of the header, inspired by the supplied Confluence reference. It reverses direction when collapsed and retains an accessible Collapse/Expand navigation label and tooltip.
+
+- Area synopsis presentation: removed the tinted callout treatment and aligned Area body copy with the unboxed Page summary typography and spacing, directly below the Area title.
