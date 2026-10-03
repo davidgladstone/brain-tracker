@@ -8,7 +8,7 @@ Reach decision-ready designs for handling larger and more varied inputs, keeping
 
 Use the domain vocabulary in `CONTEXT.md`, especially `Artifact`, `Classification Decision`, `Knowledge Projection`, `Publication`, `Knowledge Variant`, `Area`, and `Catalog`. Preserve deterministic authorization and atomic Publication behavior. This map remains an exploration map; the user explicitly authorized implementation of ticket 01, while the other topics remain exploratory.
 
-Related work: the LLM classification maps define the current classification contract and JEV-compatible typed-decision seam. The audience-aware publication map already records Artifact semantic profiles and targeted placement; semantic-profile generation was implemented in application commits `13920b3` and `eae2688`. Reconcile with those efforts instead of reopening settled decisions.
+Related work: the LLM classification maps define the current classification contract and JEV-compatible typed-decision seam. The audience-aware publication map already records Artifact semantic profiles and targeted placement; semantic-profile generation was implemented in application commits `13920b3` and `eae2688`. The [local web workspace spec](../local-web-workspace/spec.md) resolves the browser UI scope and local access seam and defines its implementation slices. Reconcile with those efforts instead of reopening settled decisions.
 
 ## Decisions so far
 
@@ -19,11 +19,11 @@ Related work: the LLM classification maps define the current classification cont
 - [Configure provider parallelism](issues/05-configure-provider-parallelism.md) is resolved. Provider-scoped concurrency is gated by a shared in-memory dispatcher with a default of 1 and a current maximum of 2; durable work queues retain retry and restart recovery.
 - [Retire obsolete Publication data](issues/06-retire-obsolete-publication-data.md) is resolved. Keep superseded revisions only for a configurable five-minute in-flight read grace; all reads remain gated by the selected Publication's safety-drift availability, and older revisions are not rollback targets.
 - [Keep the Catalog in sync and rebuildable](issues/07-keep-the-catalog-in-sync-and-rebuildable.md) is resolved. Keep SQLite FTS5 with full atomic rebuilds, coalesced in-memory repair, and matching Catalog generations for pinned reads during the superseded-Publication grace; remove MCP request traces.
+- Local browser workspace scope is resolved in the [implementation spec](../local-web-workspace/spec.md): serve HTML/CSS/JavaScript and a same-origin API from the loopback daemon; use authorized read services and shared application operations; keep the API in Go and avoid a separate Python server.
 
 ## Not yet specified
 
 - Which capabilities should be prioritized for implementation, and whether any need to be split into separately deliverable efforts.
-- How much of the web UI should be a read-only browser versus an alternate Intake surface, including the supported actions and local access model.
 - How every LLM call should be accounted for, including which calls and details the accounting covers and how those records are accessed and retained.
 
 ## Out of scope
