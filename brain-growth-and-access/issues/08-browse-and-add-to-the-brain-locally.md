@@ -54,3 +54,5 @@ What should a simple local website provide for browsing Brain content and adding
 - Navigation affordance follow-up: replaced the inline text action with a square, blue-outlined sidebar icon at the start of the header, inspired by the supplied Confluence reference. It reverses direction when collapsed and retains an accessible Collapse/Expand navigation label and tooltip.
 
 - Area synopsis presentation: removed the tinted callout treatment and aligned Area body copy with the unboxed Page summary typography and spacing, directly below the Area title.
+
+- Navigation icon polish: removed the always-visible blue border and reduced the sidebar toggle to a compact 36px control aligned with the header logo and mode switch; hover and keyboard-focus feedback remain.
