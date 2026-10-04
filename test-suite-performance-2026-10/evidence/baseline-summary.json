@@ -1,0 +1,203 @@
+{
+  "Commit": "57979f8",
+  "Command": "go test ./... -count=1 -timeout=15m -json",
+  "Environment": "Windows amd64; Go 1.26.7; outside sandbox; existing default build cache",
+  "Meta": {
+    "ExitCode": 0,
+    "WallSeconds": 68.4914123
+  },
+  "Packages": [
+    {
+      "Package": "github.com/david/mybrain/internal/curation",
+      "Elapsed": 65.038
+    },
+    {
+      "Package": "github.com/david/mybrain/internal/projection",
+      "Elapsed": 27.988
+    },
+    {
+      "Package": "github.com/david/mybrain/internal/classification",
+      "Elapsed": 25.37
+    },
+    {
+      "Package": "github.com/david/mybrain/internal/installation",
+      "Elapsed": 23.808
+    },
+    {
+      "Package": "github.com/david/mybrain/internal/read",
+      "Elapsed": 20.581
+    },
+    {
+      "Package": "github.com/david/mybrain/internal/daemon",
+      "Elapsed": 19.946
+    },
+    {
+      "Package": "github.com/david/mybrain/internal/realm",
+      "Elapsed": 18.512
+    },
+    {
+      "Package": "github.com/david/mybrain/cmd/brain",
+      "Elapsed": 13.844
+    },
+    {
+      "Package": "github.com/david/mybrain/internal/mcpserver",
+      "Elapsed": 10.898
+    },
+    {
+      "Package": "github.com/david/mybrain/internal/intake",
+      "Elapsed": 5.84
+    },
+    {
+      "Package": "github.com/david/mybrain/internal/application",
+      "Elapsed": 5.808
+    },
+    {
+      "Package": "github.com/david/mybrain/internal/reclassification",
+      "Elapsed": 4.54
+    },
+    {
+      "Package": "github.com/david/mybrain/internal/policy",
+      "Elapsed": 3.498
+    },
+    {
+      "Package": "github.com/david/mybrain/internal/catalog",
+      "Elapsed": 1.593
+    },
+    {
+      "Package": "github.com/david/mybrain/internal/migration",
+      "Elapsed": 1.542
+    },
+    {
+      "Package": "github.com/david/mybrain/internal/llm",
+      "Elapsed": 1.365
+    },
+    {
+      "Package": "github.com/david/mybrain/internal/vault",
+      "Elapsed": 1.333
+    },
+    {
+      "Package": "github.com/david/mybrain/internal/webapi",
+      "Elapsed": 0.893
+    },
+    {
+      "Package": "github.com/david/mybrain/internal/config",
+      "Elapsed": 0.814
+    },
+    {
+      "Package": "github.com/david/mybrain/internal/installation/profile",
+      "Elapsed": 0.504
+    },
+    {
+      "Package": "github.com/david/mybrain/internal/daemonlog",
+      "Elapsed": 0.484
+    },
+    {
+      "Package": "github.com/david/mybrain/internal/domain",
+      "Elapsed": 0.435
+    }
+  ],
+  "TopTests": [
+    {
+      "Package": "github.com/david/mybrain/internal/daemon",
+      "Test": "TestRunSchedulesRealmSyncAndRebuildsOnlyAffectedLocalAudience",
+      "Elapsed": 8.03
+    },
+    {
+      "Package": "github.com/david/mybrain/internal/curation",
+      "Test": "TestDreamingControllerSkipsUnchangedAudienceAndRetriesFailedWork",
+      "Elapsed": 7.68
+    },
+    {
+      "Package": "github.com/david/mybrain/internal/curation",
+      "Test": "TestDreamingControllerResumesBoundedBatchesBeforeAtomicPublication",
+      "Elapsed": 7.46
+    },
+    {
+      "Package": "github.com/david/mybrain/internal/read",
+      "Test": "TestInstallationSearchRequiresCurrentCatalog",
+      "Elapsed": 6.34
+    },
+    {
+      "Package": "github.com/david/mybrain/internal/projection",
+      "Test": "TestSnapshotPublicationRechecksAtPointerCommit",
+      "Elapsed": 6
+    },
+    {
+      "Package": "github.com/david/mybrain/internal/read",
+      "Test": "TestInstallationReadProfilesAndProvenance",
+      "Elapsed": 5.55
+    },
+    {
+      "Package": "github.com/david/mybrain/internal/projection",
+      "Test": "TestSnapshotPublicationIsLocalAndReauthorizesEveryRealm",
+      "Elapsed": 5.49
+    },
+    {
+      "Package": "github.com/david/mybrain/internal/realm",
+      "Test": "TestSyncRejectsMissingOrIncorrectOriginBeforeFetch",
+      "Elapsed": 4.95
+    },
+    {
+      "Package": "github.com/david/mybrain/internal/classification",
+      "Test": "TestPolicyReclassificationFailsClosedThroughPublicationThenPublishesCurrentDecision",
+      "Elapsed": 4.9
+    },
+    {
+      "Package": "github.com/david/mybrain/internal/curation",
+      "Test": "TestSnapshotLocalPathsRejectRealmSymlinks",
+      "Elapsed": 4.87
+    },
+    {
+      "Package": "github.com/david/mybrain/internal/mcpserver",
+      "Test": "TestHTTPHandlerServesHealthAndMCPWithoutGit",
+      "Elapsed": 3.85
+    },
+    {
+      "Package": "github.com/david/mybrain/internal/installation",
+      "Test": "TestLoadSnapshotRejectsInvalidLocalPolicy",
+      "Elapsed": 3.64
+    },
+    {
+      "Package": "github.com/david/mybrain/internal/mcpserver",
+      "Test": "TestInstallationMCPReauthorizesRealmResults",
+      "Elapsed": 3.41
+    },
+    {
+      "Package": "github.com/david/mybrain/internal/curation",
+      "Test": "TestNewArtifactWithUniqueProfileMatchRegeneratesOnlyItsVariant",
+      "Elapsed": 3.4
+    },
+    {
+      "Package": "github.com/david/mybrain/internal/projection",
+      "Test": "TestStagingRejectsInvalidProjection",
+      "Elapsed": 3.38
+    },
+    {
+      "Package": "github.com/david/mybrain/internal/mcpserver",
+      "Test": "TestMCPQueryDoesNotRequireGit",
+      "Elapsed": 3.2
+    },
+    {
+      "Package": "github.com/david/mybrain/internal/curation",
+      "Test": "TestUnmatchedArtifactWithConflictingGeneratedIDFallsBackToFullCuration",
+      "Elapsed": 3.19
+    },
+    {
+      "Package": "github.com/david/mybrain/internal/curation",
+      "Test": "TestSafetyDriftGraceServesOneCompletePriorPublication",
+      "Elapsed": 3.15
+    },
+    {
+      "Package": "github.com/david/mybrain/internal/curation",
+      "Test": "TestArtifactWithoutTruthfulExistingPlacementCreatesNewVariantIncrementally",
+      "Elapsed": 2.96
+    },
+    {
+      "Package": "github.com/david/mybrain/internal/daemon",
+      "Test": "TestRunStaysReadyWhenLLMIsUnavailable",
+      "Elapsed": 2.81
+    }
+  ],
+  "PassedTestEvents": 673,
+  "SkippedTestEvents": 7
+}

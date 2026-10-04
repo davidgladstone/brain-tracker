@@ -1,0 +1,44 @@
+[
+  {
+    "Package": "github.com/david/mybrain/internal/installation",
+    "Test": null,
+    "Action": "pass",
+    "Elapsed": 2.7560000000000002
+  },
+  {
+    "Package": "github.com/david/mybrain/internal/projection",
+    "Test": "TestStagingValidationUsesOneReadForAllVariantsAndRejectsMidReadChanges/one_variant",
+    "Action": "pass",
+    "Elapsed": 0.36
+  },
+  {
+    "Package": "github.com/david/mybrain/internal/projection",
+    "Test": "TestStagingValidationUsesOneReadForAllVariantsAndRejectsMidReadChanges/ten_variants",
+    "Action": "pass",
+    "Elapsed": 0.4
+  },
+  {
+    "Package": "github.com/david/mybrain/internal/projection",
+    "Test": "TestStagingValidationUsesOneReadForAllVariantsAndRejectsMidReadChanges/audience_during_read",
+    "Action": "pass",
+    "Elapsed": 0.31
+  },
+  {
+    "Package": "github.com/david/mybrain/internal/projection",
+    "Test": "TestStagingValidationUsesOneReadForAllVariantsAndRejectsMidReadChanges/canonical_during_read",
+    "Action": "pass",
+    "Elapsed": 0.3
+  },
+  {
+    "Package": "github.com/david/mybrain/internal/projection",
+    "Test": "TestStagingValidationUsesOneReadForAllVariantsAndRejectsMidReadChanges",
+    "Action": "pass",
+    "Elapsed": 1.99
+  },
+  {
+    "Package": "github.com/david/mybrain/internal/projection",
+    "Test": null,
+    "Action": "pass",
+    "Elapsed": 17.838
+  }
+]

@@ -1,0 +1,14 @@
+[
+  {
+    "Package": "github.com/david/mybrain/internal/daemon",
+    "Test": "TestRunSchedulesRealmSyncAndRebuildsOnlyAffectedLocalAudience",
+    "Action": "pass",
+    "Elapsed": 5.65
+  },
+  {
+    "Package": "github.com/david/mybrain/internal/daemon",
+    "Test": null,
+    "Action": "pass",
+    "Elapsed": 5.7379999999999995
+  }
+]

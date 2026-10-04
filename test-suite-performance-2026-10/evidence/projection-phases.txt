@@ -1,0 +1,16 @@
+=== RUN   TestDiagnosticPerformance
+    diagnostic_performance_test.go:23: MEASURE phase=fixture n=1 elapsed=823.248ms git_starts=8
+    diagnostic_performance_test.go:23: MEASURE phase=load_snapshot n=3 elapsed=38.9481ms git_starts=0
+    diagnostic_performance_test.go:23: MEASURE phase=snapshot_allows n=3 elapsed=35.2995ms git_starts=0
+    diagnostic_performance_test.go:23: MEASURE phase=realm_verify n=3 elapsed=20.7548ms git_starts=0
+    diagnostic_performance_test.go:23: MEASURE phase=begin_read n=1 elapsed=14.4135ms git_starts=0
+    diagnostic_performance_test.go:23: MEASURE phase=session_allows n=1000 elapsed=0s git_starts=0
+    diagnostic_performance_test.go:23: MEASURE phase=snapshot_eligibility n=1 elapsed=55.7572ms git_starts=0
+    diagnostic_performance_test.go:23: MEASURE phase=session_eligibility n=1 elapsed=0s git_starts=0
+    diagnostic_performance_test.go:23: MEASURE phase=finish_read n=1 elapsed=15.4326ms git_starts=0
+    diagnostic_performance_test.go:23: MEASURE phase=stage_fixture n=1 elapsed=199.131ms git_starts=0
+--- PASS: TestDiagnosticPerformance (1.23s)
+PASS
+ok  	github.com/david/mybrain/internal/projection	1.590s
+FAIL	github.com/david/mybrain/internal/curation [build failed]
+FAIL

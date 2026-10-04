@@ -1,0 +1,64 @@
+File: curation.test.exe
+Build ID: C:\Users\david\AppData\Local\Temp\go-build3628504086\b001\curation.test.exe2026-10-05 00:00:43.4955514 +1300 NZDT
+Type: cpu
+Time: 2026-10-05 00:00:43 NZDT
+Duration: 75.36s, Total samples = 81.66s (108.36%)
+Showing nodes accounting for 71.94s, 88.10% of 81.66s total
+Dropped 804 nodes (cum <= 0.41s)
+Showing top 55 nodes out of 294
+      flat  flat%   sum%        cum   cum%
+     0.04s 0.049% 0.049%        72s 88.17%  syscall.SyscallN
+     0.01s 0.012% 0.061%     71.96s 88.12%  syscall.syscalln
+    71.63s 87.72% 87.78%     71.95s 88.11%  runtime.cgocall
+         0     0% 87.78%     70.82s 86.73%  testing.tRunner
+         0     0% 87.78%     42.65s 52.23%  github.com/david/mybrain/internal/curation.Service.run
+         0     0% 87.78%     41.89s 51.30%  github.com/david/mybrain/internal/curation.Service.runAudience
+         0     0% 87.78%     36.53s 44.73%  github.com/david/mybrain/internal/realm.Store.Verify
+     0.01s 0.012% 87.79%     35.90s 43.96%  github.com/david/mybrain/internal/realm.ValidateCanonical
+         0     0% 87.79%     34.29s 41.99%  github.com/david/mybrain/internal/realm.Open
+         0     0% 87.79%     32.98s 40.39%  path/filepath.WalkDir
+     0.03s 0.037% 87.83%     30.67s 37.56%  path/filepath.walkDir
+         0     0% 87.83%     28.63s 35.06%  github.com/david/mybrain/internal/curation.Service.runFullAudienceWithGenerated
+         0     0% 87.83%     25.74s 31.52%  github.com/david/mybrain/internal/installation.LoadSnapshot
+         0     0% 87.83%     24.23s 29.67%  github.com/david/mybrain/internal/installation.Snapshot.WithValidatedRead (inline)
+         0     0% 87.83%     24.23s 29.67%  github.com/david/mybrain/internal/installation.Snapshot.withValidatedRead
+         0     0% 87.83%     23.64s 28.95%  github.com/david/mybrain/internal/installation.validateAttachment
+     0.01s 0.012% 87.84%     23.64s 28.95%  os.openFileNolog
+     0.03s 0.037% 87.88%     23.41s 28.67%  os.ReadDir
+         0     0% 87.88%     23.21s 28.42%  github.com/david/mybrain/internal/projection.EligibleSourcesForSnapshot
+     0.04s 0.049% 87.93%     22.98s 28.14%  syscall.Open
+         0     0% 87.93%     20.76s 25.42%  github.com/david/mybrain/internal/curation.Service.RunIncremental (inline)
+     0.01s 0.012% 87.94%        20s 24.49%  syscall.createFile
+         0     0% 87.94%     18.88s 23.12%  github.com/david/mybrain/internal/curation.Service.runBoundedDreamingAudience
+         0     0% 87.94%     18.74s 22.95%  github.com/david/mybrain/internal/installation.Snapshot.currentWith (inline)
+     0.02s 0.024% 87.96%     18.23s 22.32%  os.ReadFile
+         0     0% 87.96%     18.10s 22.17%  github.com/david/mybrain/internal/curation.Service.eligible
+         0     0% 87.96%     16.48s 20.18%  github.com/david/mybrain/internal/installation.Snapshot.validatedRootWith
+         0     0% 87.96%     15.70s 19.23%  github.com/david/mybrain/internal/curation_test.localCurationFixture
+         0     0% 87.96%     15.16s 18.56%  github.com/david/mybrain/internal/curation.Service.RunDreamingIfNeeded (inline)
+         0     0% 87.96%     14.94s 18.30%  github.com/david/mybrain/internal/curation.Service.runFullAudience (inline)
+     0.01s 0.012% 87.97%     14.52s 17.78%  github.com/david/mybrain/internal/realm.validateRecordGraph
+         0     0% 87.97%     14.22s 17.41%  github.com/david/mybrain/internal/realm.readRecords
+         0     0% 87.97%     13.93s 17.06%  github.com/david/mybrain/internal/installation.BeginRead
+         0     0% 87.97%     13.17s 16.13%  github.com/david/mybrain/internal/realm.VerifyManifest
+         0     0% 87.97%     12.82s 15.70%  os.OpenFile
+     0.01s 0.012% 87.99%     12.67s 15.52%  github.com/david/mybrain/internal/realm.CaptureReadImage
+         0     0% 87.99%     12.24s 14.99%  os.Open (inline)
+         0     0% 87.99%     12.05s 14.76%  github.com/david/mybrain/internal/curation.Service.checkInputs
+         0     0% 87.99%     11.79s 14.44%  github.com/david/mybrain/internal/realm.verifyCompleteManifest
+     0.01s 0.012% 88.00%     10.84s 13.27%  os.openDir
+         0     0% 88.00%     10.82s 13.25%  os.openDirNolog (inline)
+     0.01s 0.012% 88.01%     10.45s 12.80%  os.stat
+         0     0% 88.01%     10.28s 12.59%  internal/poll.(*FD).execIO
+     0.02s 0.024% 88.04%     10.22s 12.52%  syscall.GetFileAttributesEx
+     0.03s 0.037% 88.07%     10.05s 12.31%  internal/poll.(*FD).Read
+         0     0% 88.07%     10.05s 12.31%  os.(*File).Read
+         0     0% 88.07%     10.05s 12.31%  os.(*File).read (inline)
+         0     0% 88.07%      9.99s 12.23%  internal/poll.(*FD).Read.func1
+         0     0% 88.07%      9.98s 12.22%  os/exec.(*Cmd).Run
+         0     0% 88.07%      9.98s 12.22%  syscall.ReadFile (inline)
+     0.01s 0.012% 88.08%      9.98s 12.22%  syscall.readFile
+         0     0% 88.08%      9.95s 12.18%  github.com/david/mybrain/internal/projection.freshSnapshot (inline)
+         0     0% 88.08%      9.95s 12.18%  github.com/david/mybrain/internal/projection.freshSnapshotWith
+     0.01s 0.012% 88.10%      9.69s 11.87%  os.(*File).readdir
+         0     0% 88.10%      9.58s 11.73%  os.(*File).ReadDir

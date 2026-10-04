@@ -1,0 +1,40 @@
+ok  	github.com/david/mybrain/cmd/brain	7.828s
+ok  	github.com/david/mybrain/internal/application	5.501s
+ok  	github.com/david/mybrain/internal/catalog	1.485s
+ok  	github.com/david/mybrain/internal/classification	23.978s
+ok  	github.com/david/mybrain/internal/config	0.743s
+ok  	github.com/david/mybrain/internal/curation	55.717s
+ok  	github.com/david/mybrain/internal/daemon	11.365s
+ok  	github.com/david/mybrain/internal/daemonlog	0.448s
+ok  	github.com/david/mybrain/internal/domain	0.403s
+ok  	github.com/david/mybrain/internal/installation	17.962s
+ok  	github.com/david/mybrain/internal/installation/profile	0.466s
+ok  	github.com/david/mybrain/internal/intake	5.488s
+ok  	github.com/david/mybrain/internal/llm	1.275s
+ok  	github.com/david/mybrain/internal/mcpserver	10.022s
+ok  	github.com/david/mybrain/internal/migration	1.392s
+ok  	github.com/david/mybrain/internal/policy	3.367s
+ok  	github.com/david/mybrain/internal/projection	26.687s
+ok  	github.com/david/mybrain/internal/read	19.033s
+ok  	github.com/david/mybrain/internal/realm	4.755s
+ok  	github.com/david/mybrain/internal/reclassification	4.303s
+?   	github.com/david/mybrain/internal/retry	[no test files]
+?   	github.com/david/mybrain/internal/testutil	[no test files]
+ok  	github.com/david/mybrain/internal/vault	1.341s
+ok  	github.com/david/mybrain/internal/webapi	0.829s
+?   	github.com/david/mybrain/internal/webui	[no test files]
+✔ renders common Markdown blocks and inline formatting (1.6934ms)
+✔ renders pipe tables with alignment and inline Markdown (0.3729ms)
+✔ keeps escaped pipes and pipes inside code spans within table cells (0.1618ms)
+✔ renders Area summaries as Markdown in the inline page layout (0.8303ms)
+✔ avoids repeating the Area title and Page cards in an Area summary (0.2807ms)
+✔ renders Knowledge links as plain text and keeps reference URLs clickable (0.3983ms)
+✔ escapes HTML and refuses scriptable link schemes (0.2046ms)
+ℹ tests 7
+ℹ suites 0
+ℹ pass 7
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 64.4699

@@ -1,0 +1,43 @@
+package curation_test
+
+import (
+	"context"
+	"os"
+	"strings"
+	"testing"
+	"time"
+
+	"github.com/david/mybrain/internal/curation"
+	"github.com/david/mybrain/internal/installation"
+)
+
+// Temporary diagnostic; retained as text in tracker evidence after measurement.
+func TestDiagnosticCurationPerformance(t *testing.T) {
+	count := func() int {
+		data, _ := os.ReadFile(os.Getenv("GIT_TRACE2_EVENT"))
+		return strings.Count(string(data), `"event":"start"`)
+	}
+	measure := func(name string, fn func()) {
+		before := count()
+		start := time.Now()
+		fn()
+		t.Logf("MEASURE phase=%s elapsed=%s git_starts=%d", name, time.Since(start), count()-before)
+	}
+	var snapshot installation.Snapshot
+	measure("fixture", func() { snapshot = localCurationFixture(t) })
+	var service curation.Service
+	measure("service", func() {
+		var err error
+		service, err = curation.NewForSnapshot(snapshot, &countingDreamGenerator{version: "probe-v1"})
+		if err != nil { t.Fatal(err) }
+	})
+	measure("initial_dream", func() {
+		if result, err := service.RunDreamingIfNeeded(context.Background(), []string{"public-work"}); err != nil || len(result.Audiences) != 1 || !result.Audiences[0].Published { t.Fatalf("initial: %+v, %v", result, err) }
+	})
+	measure("unchanged_dream", func() {
+		if result, err := service.RunDreamingIfNeeded(context.Background(), []string{"public-work"}); err != nil || len(result.Audiences) != 1 || result.Audiences[0].Published { t.Fatalf("unchanged: %+v, %v", result, err) }
+	})
+	measure("forced_dream", func() {
+		if _, err := service.RunDreaming(context.Background(), []string{"public-work"}); err != nil { t.Fatal(err) }
+	})
+}

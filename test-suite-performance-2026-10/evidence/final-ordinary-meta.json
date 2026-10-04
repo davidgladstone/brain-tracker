@@ -1,0 +1,5 @@
+{
+  "ExitCode": 0,
+  "WallSeconds": 58.7319998,
+  "Command": "pwsh -NoProfile -File scripts/test.ps1"
+}

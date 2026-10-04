@@ -1,0 +1,9 @@
+=== RUN   TestDiagnosticCurationPerformance
+    diagnostic_performance_test.go:24: MEASURE phase=fixture elapsed=744.6832ms git_starts=8
+    diagnostic_performance_test.go:24: MEASURE phase=service elapsed=10.5911ms git_starts=0
+    diagnostic_performance_test.go:24: MEASURE phase=initial_dream elapsed=906.8067ms git_starts=0
+    diagnostic_performance_test.go:24: MEASURE phase=unchanged_dream elapsed=145.143ms git_starts=0
+    diagnostic_performance_test.go:24: MEASURE phase=forced_dream elapsed=789.8738ms git_starts=0
+--- PASS: TestDiagnosticCurationPerformance (2.62s)
+PASS
+ok  	github.com/david/mybrain/internal/curation	2.709s
