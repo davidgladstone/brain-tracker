@@ -4,15 +4,14 @@
 
 **Blocked by:** 01 Browse authorized Publications locally.
 
-**Status:** claimed
-**Assignee:** Codex (current session)
+**Status:** resolved
 
-- [ ] Markdown notes, generic link notes, and local files enter the existing Intake process for the selected Realm.
+- [x] Markdown notes, generic link notes, and local files enter the existing Intake process for the selected Realm.
 - [x] Intake outcomes and errors are shown from structured application results; the UI does not claim simulated success.
 - [x] The user can see queued, processing, and exception states supported by current operations.
-- [ ] An item's review status links to that item's focused Intake review when review is required.
-- [ ] Generic URL capture does not imply external fetching or provider connection.
-- [ ] HTTP integration tests verify successful submission, validation errors, and persisted Intake state against a temporary Installation.
+- [x] An item's review status links to that item's focused Intake review when review is required.
+- [x] Generic URL capture does not imply external fetching or provider connection.
+- [x] HTTP integration tests verify successful submission, validation errors, and persisted Intake state against a temporary Installation.
 
 ## Comments
 
@@ -26,4 +25,10 @@ User confirmed that local file uploads should support text files and images for 
 
 ### 2026-10-07 implementation progress
 
-Added queue-backed review-list and focused-review API routes plus a Review UI destination. Intake status links now open the requested Artifact, the reviewer sees the Artifact Text and Realm-defined tag descriptions/handling guidance, and a saved decision goes through shared application operations to durable classification and curation handoff. Integration tests cover direct details, queue-only disclosure, invalid omitted tag list, explicit empty tags, persisted state, and the curation job. The full ordinary test runner passed all Go packages and all nine JavaScript tests. Image upload remains open: current canonical Artifact storage and classification analysis accept Text only, so image support still needs original-payload retention and a multimodal preprocessing path.
+Added queue-backed review-list and focused-review API routes plus a Review UI destination. Intake status links now open the requested Artifact, the reviewer sees the Artifact Text and Realm-defined tag descriptions/handling guidance, and a saved decision goes through shared application operations to durable classification and curation handoff. Integration tests cover direct details, queue-only disclosure, invalid omitted tag list, explicit empty tags, persisted state, and the curation job. The image path now retains original payloads, selects an explicitly image-capable model, and preprocesses before classification.
+
+### 2026-10-07 resolution
+
+Verified Markdown notes, generic titled URL notes without external fetching, local text files, and image upload through the Intake API. Tests cover structured successful results, invalid input, persisted Intake state, original image retention, preprocessing, and classification handoff. The UI status link opens focused review for the specific Realm/Memory/Artifact tuple.
+
+Verification: focused config, LLM, web API, classification-worker, and CLI tests passed. The full ordinary runner passed all Go packages and all nine JavaScript tests.
