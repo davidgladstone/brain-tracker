@@ -4,7 +4,8 @@
 
 **Blocked by:** 01 Browse authorized Publications locally.
 
-**Status:** ready-for-agent
+**Status:** claimed
+**Assignee:** Codex (current session)
 
 - [ ] Archive excludes a Source from knowledge generation and is reversible through unarchive.
 - [ ] Archived Sources are available through an explicit administrative Search filter.
