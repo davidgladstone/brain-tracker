@@ -38,8 +38,8 @@ The UI retains the reviewed prototype direction: a Profile-scoped Browse tree, c
 26. As an operator, I want to start supported curation or Dreaming operations and see structured progress, so that I can maintain Publications from the browser.
 27. As an operator, I want to inspect redacted Audit Events for material decisions and transitions, so that I can understand what changed without exposing credentials, source text, prompts, or provider responses.
 28. As an operator, I want to archive and unarchive a Source, so that I can reversibly exclude its material from knowledge generation while retaining an explicit administrative search path.
-29. As an operator, I want to delete a connector-managed Source at its origin and remove its Brain-retained content, so that a later synchronization cannot reintroduce it.
-30. As an operator, I want a failed or unsupported origin deletion to leave the connector-managed Source intact and clearly report the failure, so that local deletion cannot be mistaken for complete removal.
+29. As an operator, I want to delete a Source from the Realm's canonical current state, so that it is removed from the Realm and its dependent Knowledge Projections can be rebuilt.
+30. As an operator, I want to publish Realm deletion through the separate Push action while preserving Git history and the external input source, so that I can control when other Installations receive the change without deleting the original.
 31. As a local Brain user or developer, I want the UI to consume a documented HTTP API independently of the Go implementation, so that the UI can be replaced or another UI can use the same API.
 
 ## Implementation Decisions
@@ -60,7 +60,7 @@ The UI retains the reviewed prototype direction: a Profile-scoped Browse tree, c
 - Intake classification review assigns zero or more Realm-defined Controlled Tags to an Artifact. It does not assign Areas. External account/ownership checks are not part of current Intake review because provider integrations are not implemented.
 - Controlled Tag administration exposes auto-accept and locked-review confidence thresholds as distinct values in the range 0–100 percent, with locked-review not below auto-accept. Strong contrary evidence against a human-locked classification queues human review without silently changing its effective tags.
 - External provider credentials and provider/plugin configuration remain a documented future gap. The current browser UI must not imply that provider connections exist.
-- Archive is reversible, excludes a Source from knowledge generation, and remains available through an explicit administrative Search filter. Deleting a connector-managed Source must delete at origin first and remove Brain-retained data and dependent projections only after origin success; unsupported or failed origin deletion leaves the Source intact. The UI must never imply a later sync cannot reintroduce content unless origin deletion is confirmed. Connector implementations and credential setup are outside this delivery, so origin deletion becomes available only when an owning integration supports it.
+- Archive is reversible, excludes a Source from knowledge generation, and remains available through an explicit administrative Search filter. Delete removes the Source, Artifact, Text, retained media, and unused Memory from the Realm's canonical current state. It marks dependent Publications stale for regeneration. A separate Push publishes the deletion to other Installations; prior Git history and the external input source remain untouched. No provider integration is required for this Realm deletion operation.
 - Git remains for explicit Realm initialization/attachment setup, backup, and synchronization. Ordinary Intake, classification, curation, publication, and retrieval do not depend on Git or a remote, consistent with ADR 0007.
 - Do not expose LLM-call accounting in this delivery; its scope and retention remain undecided on the exploration map.
 - The local HTTP boundary validates loopback/host/origin expectations, does not enable cross-origin access for the current same-origin UI, and protects state-changing requests from cross-site browser initiation. Any future UI hosted at a different origin needs an explicit origin allowlist and request-protection design; do not enable wildcard CORS. Responses must preserve existing redaction rules.
@@ -76,7 +76,7 @@ The UI retains the reviewed prototype direction: a Profile-scoped Browse tree, c
 ## Out of Scope
 
 - Replacing the established authorization model or treating Profiles, Catalog data, or Knowledge Projections as canonical Realm data.
-- External provider connectors, OAuth/account setup, plugin credential configuration, source fetching, and file upload to third parties. Connector-managed origin deletion is required when supported, but this delivery does not introduce a new provider connector.
+- External provider connectors, OAuth/account setup, plugin credential configuration, source fetching, and file upload to third parties. External-source deletion is outside this delivery; Realm deletion leaves external inputs untouched.
 - Python as a second web server, a frontend framework, and LLM-call accounting.
 - Making the UI perform Git backup or synchronization as a side effect of normal processing.
 - Replacing existing CLI or MCP adapters or exposing every operation through every adapter.
