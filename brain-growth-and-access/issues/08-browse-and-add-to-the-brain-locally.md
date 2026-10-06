@@ -2,7 +2,6 @@
 
 Type: prototype
 Status: claimed
-Blocked by: 02, 06, 07
 
 ## Question
 
