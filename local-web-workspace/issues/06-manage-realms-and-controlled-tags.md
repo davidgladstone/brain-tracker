@@ -4,7 +4,8 @@
 
 **Blocked by:** 01 Browse authorized Publications locally.
 
-**Status:** claimed`n**Assignee:** Codex (current session)
+**Status:** claimed
+**Assignee:** Codex (current session)
 
 - [ ] An administrator can create, attach, and detach a Realm using existing application operations and receives clear outcome/error feedback.
 - [ ] Detachment confirmation names affected Audience access and Publication/rebuild consequences.
