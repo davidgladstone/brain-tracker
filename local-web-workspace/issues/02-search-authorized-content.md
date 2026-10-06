@@ -1,14 +1,25 @@
 # 02: Search authorized content
 
-**What to build:** A user searches the current Profile's available Areas, Pages, and Sources, filters the result types, and opens an authorized result without learning that hidden results exist.
+**What to build:** A user searches the current Profile's available Areas and Pages, with Sources available as an explicit opt-in filter, and opens an authorized result without learning that hidden results exist. Results include the exact byte size of the content they represent.
 
 **Blocked by:** 01 Browse authorized Publications locally.
 
-**Status:** claimed
+**Status:** resolved
 **Assignee:** Codex (current session)
 
-- [ ] Search can query Areas, Knowledge Variants, and Sources and filter results by those types.
-- [ ] Search is scoped to the active Profile and currently permitted Audience Publications.
-- [ ] Unauthorized names, snippets, counts, and source metadata do not appear in results or errors.
-- [ ] Catalog search results are revalidated against current read authorization before response.
-- [ ] HTTP integration tests cover matching, filtering, Profile changes, and unauthorized result suppression.
+- [x] Search can query Areas and Knowledge Variants by default and filters by type; Source search is opt-in.
+- [x] Area and Page search are scoped to the active Profile's currently permitted Audience Publications. Source search is based on the current eligibility and classification of each Artifact against the Profile's Audiences; it does not require a citing Page.
+- [x] Unauthorized names, snippets, counts, and source metadata do not appear in results or errors.
+- [x] Catalog search results are revalidated against current read authorization before response.
+- [x] HTTP integration tests cover matching, filtering, Profile changes, uncited Source search, source detail authorization, and unauthorized result suppression.
+- [x] Results report `size_bytes` for the Area summary, Page Markdown, or Source Text so users can judge the content size before opening it.
+
+## Comments
+
+### 2026-10-06
+
+Claimed by Codex for this session. Implemented Profile-scoped Area and Page search, with Source search behind the explicit `type=source` filter. Source results and detail views are authorized by current Artifact eligibility for at least one Audience in the selected Profile and do not require a Page citation. Search results return bounded summaries and exact `size_bytes`; opening a Source returns its authorized Text and size. Archive/unarchive and deletion actions remain in Issue 08, “Manage Source lifecycle.”
+
+Added HTTP integration coverage for matching and type filters, Profile changes, direct search of a permitted but uncited Source, Source detail, and generic denial of another Profile's Page and Source. Focused `go test ./internal/webapi -count=1` passed; `node --check internal/webui/static/app.js`, the JavaScript test suite (9 tests), and `git diff --check` passed.
+
+The required complete ordinary runner `pwsh -NoProfile -File C:/ai/MyBrain/scripts/test.ps1` was run twice outside the sandbox with temp files and the Go cache under the repository's `.tmp/`. Both runs passed `internal/webapi` and all JavaScript tests but exited 1 on unrelated intermittent failures: `TestMCPStdioStartupAndQueryDoNotRequireGit` closed stdout (also reproduced in isolation), and separate curation/classification/installation tests hit Windows `Access is denied` during atomic manifest rename. No Git integration suite was required for this search change.
