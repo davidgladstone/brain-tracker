@@ -22,3 +22,6 @@
 ### 2026-10-06
 
 Claimed to continue the Manage surface after Issue 05. Reviewing attachment and classification-policy write paths before implementing consequential Realm operations.
+### 2026-10-07 workflow review
+
+The existing `RunReclassification` workflow requires a pre-change baseline and applies stale markers only when authorization-relevant policy changes have affected Artifacts. It schedules classification jobs but does not clearly enqueue curation for every policy-only change; attaching a policy editor directly to this path would therefore not satisfy the requested rebuild behavior. I paused implementation at this seam rather than expose an editor that can leave Publications stale without reliable regeneration. Existing policy validation already enforces finite thresholds in [0,1] and locked-review >= auto-accept; the classifier already routes sufficiently strong contrary evidence against a human lock to `locked_classification_review_required`.
