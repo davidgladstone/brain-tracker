@@ -4,7 +4,8 @@
 
 **Blocked by:** 01 Browse authorized Publications locally.
 
-**Status:** ready-for-agent
+**Status:** claimed
+**Assignee:** Codex (current session)
 
 - [ ] Audience briefs can be read and saved through shared application operations.
 - [ ] An Audience must explicitly enable a Realm before configuring its access rules.
@@ -14,3 +15,9 @@
 - [ ] Profile Audience choices are presented vertically and saved durably.
 - [ ] Policy changes trigger the existing safety-drift and re-curation behavior.
 - [ ] HTTP integration tests verify allow, deny, wildcard inheritance, cross-Realm isolation, and policy-change effects.
+
+## Comments
+
+### 2026-10-06
+
+Claimed for implementation while the independent Audience/Profile policy slice remains available; Issue 01, “Browse authorized Publications locally,” is resolved.
