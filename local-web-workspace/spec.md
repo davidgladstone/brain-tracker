@@ -54,6 +54,8 @@ The UI retains the reviewed prototype direction: a Profile-scoped Browse tree, c
 - Read operations use authorized read services and the currently permitted Audience Publication. Search uses the Catalog as a rebuildable index, then returns only currently authorized results.
 - Mutations call shared application operations and return structured outcomes. Durable processing remains queued for the daemon.
 - The browser uses the selected Profile as context. Audience Access Policy remains the authorization authority; UI selection and Catalog contents are not authority.
+- Source archive state is Realm-canonical and travels with Realm synchronization. Archived Sources are excluded from authorized Source search and future knowledge generation, but remain searchable through an explicit local-admin Archived Sources filter.
+- Manage exposes separate Pull and Push actions for attached Realms. Pull fast-forwards validated remote history and queues affected Publications; Push commits only validated canonical Realm changes before publishing them, and never fetches.
 - Each enabled Audience/Realm pair has an explicit realm-membership gate, an optional Realm-qualified wildcard rule, and optional per-tag overrides. A tag override is enabled independently and has an Allow or Deny effect. Disabled tag rules inherit an enabled wildcard; absent applicable Allow rules default to deny. Deny overrides broader Allow.
 - Intake classification review assigns zero or more Realm-defined Controlled Tags to an Artifact. It does not assign Areas. External account/ownership checks are not part of current Intake review because provider integrations are not implemented.
 - Controlled Tag administration exposes auto-accept and locked-review confidence thresholds as distinct values in the range 0–100 percent, with locked-review not below auto-accept. Strong contrary evidence against a human-locked classification queues human review without silently changing its effective tags.
@@ -82,6 +84,7 @@ The UI retains the reviewed prototype direction: a Profile-scoped Browse tree, c
 ## Further Notes
 
 - This spec is based on the reviewed local browser prototype and the user's accumulated feedback. Prototype data and simulated actions are not implementation behavior.
+- Realm-canonical Source archival and the separate Push/Pull controls were confirmed by the user during Issue 08 implementation; ADR 0030 records the durable ownership and transfer boundary.
 - The selected single-process host keeps the API in Go and in the daemon. The browser UI is a separate client over its HTTP contract, so its assets can be replaced or another UI can be built without moving the API or coupling workflow behavior to a particular client.
 - This boundary follows ADR 0009, which assigns workflows to reusable application modules and keeps adapters thin; no additional ADR is needed for the replaceable UI client.
 - Ticket dependencies identify feature prerequisites only. Current persistence semantics and operation contracts remain owned by the existing application modules and domain decisions.
