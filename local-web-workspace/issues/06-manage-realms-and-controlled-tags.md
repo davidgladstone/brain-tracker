@@ -4,7 +4,7 @@
 
 **Blocked by:** 01 Browse authorized Publications locally.
 
-**Status:** ready-for-agent
+**Status:** claimed`n**Assignee:** Codex (current session)
 
 - [ ] An administrator can create, attach, and detach a Realm using existing application operations and receives clear outcome/error feedback.
 - [ ] Detachment confirmation names affected Audience access and Publication/rebuild consequences.
@@ -15,3 +15,9 @@
 - [ ] Tag deletion requires confirmation describing classification, Audience-policy, and rebuild effects.
 - [ ] Provider credentials are not presented as connected or configurable; their plugin/Installation configuration remains a documented gap.
 - [ ] HTTP integration tests verify attachment/configuration effects, validation, and consequential deletion behavior.
+
+## Comments
+
+### 2026-10-06
+
+Claimed to continue the Manage surface after Issue 05. Reviewing attachment and classification-policy write paths before implementing consequential Realm operations.
