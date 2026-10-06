@@ -19,3 +19,7 @@
 ### 2026-10-06
 
 Claimed by Codex for implementation. Issue 01, “Browse authorized Publications locally,” is resolved; this issue is now the next available Intake slice.
+
+### 2026-10-07 scope clarification
+
+User confirmed that local file uploads should support text files and images for this delivery. Other convertible file types are future work. Images should retain their original payload and use a multimodal LLM to produce useful text (such as extracted text or an image description) for the existing classification and curation pipeline. The repository's accepted non-text processing decision is in `brain-growth-and-access/issues/02-understand-and-preprocess-non-text-artifacts.md`.

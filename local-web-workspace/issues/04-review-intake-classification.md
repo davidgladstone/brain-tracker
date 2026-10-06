@@ -13,3 +13,9 @@
 - [ ] Saving creates the appropriate human classification decision and queues subsequent processing through shared application operations.
 - [ ] A focused review route selects and highlights the requested Artifact.
 - [ ] HTTP integration tests verify both classification state transition and reprocessing behavior.
+
+## Comments
+
+### 2026-10-07 scope clarification
+
+User confirmed that an accepted classification with an empty Controlled Tag list is valid and means Realm membership alone applies. It is distinct from `unclassified`, which means no accepted decision exists. The API/UI should send and retain an explicit empty list for the former; lifecycle state, not list length, determines whether a decision exists.
