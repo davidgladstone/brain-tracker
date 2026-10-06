@@ -4,7 +4,8 @@
 
 **Blocked by:** 01 Browse authorized Publications locally.
 
-**Status:** ready-for-agent
+**Status:** claimed
+**Assignee:** Codex (current session)
 
 - [ ] Search can query Areas, Knowledge Variants, and Sources and filter results by those types.
 - [ ] Search is scoped to the active Profile and currently permitted Audience Publications.
