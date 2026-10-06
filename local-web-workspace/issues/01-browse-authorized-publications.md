@@ -4,7 +4,7 @@
 
 **Blocked by:** None (can start immediately).
 
-**Status:** claimed
+**Status:** resolved
 **Assignee:** Codex (current session)
 
 - [x] The UI and same-origin API are served by the existing loopback daemon without requiring a second web server.
@@ -34,4 +34,6 @@ The owner clarified that open Areas display their full Markdown summary; cards l
 
 Investigated the intermittent scheduler test cleanup failure. `runCurationWorker` launched catalog rebuilds in detached goroutines, so `daemon.Run` could return before those filesystem writers finished; the scheduler integration test reproduced this as `TempDir RemoveAll cleanup: ... runtime: The directory is not empty`. The worker now waits for all catalog rebuilds before exiting. The focused scheduler integration passed five consecutive runs, and the complete Git-enabled runner passed `internal/daemon`.
 
-Updated `scripts/test.ps1` to put TEMP/TMP/TMPDIR and GOCACHE under ignored repository-local `.tmp/` paths, restoring the caller's environment afterward. The complete runner still exits 1: `TestMCPStdioStartupAndQueryDoNotRequireGit` reproducibly fails in isolation with `MCP process closed stdout: <nil>`. `TestOpenRejectsUnreadableAttachedRealm` also had an access-denied rename during the parallel full run but passed in isolation. All nine JavaScript tests passed.
+Updated `scripts/test.ps1` to put TEMP/TMP/TMPDIR and GOCACHE under ignored repository-local `.tmp/` paths, restoring the caller's environment afterward. `daemon stop` now waits for the daemon process to exit, rather than returning as soon as its HTTP endpoint goes offline; this avoids deleting an Installation while shutdown workers can still write. The CLI command test that previously reproduced a runtime/audit cleanup race passed three consecutive runs after the change.
+
+Final full Git-enabled runner: daemon, webapi, the other passing packages, and all nine JavaScript tests passed. The runner exits 1 because `TestMCPStdioStartupAndQueryDoNotRequireGit` still reproducibly reports `MCP process closed stdout: <nil>` in isolation, and one curation test had an access-denied manifest rename in the parallel run; that curation test passed in isolation. The scheduler regression passed five consecutive runs; the strengthened browse authorization test and daemon UI/API test passed focused runs. The mobile resize behavior is implemented and verified by source checks; browser automation against the local UI was blocked by the browser URL policy.
