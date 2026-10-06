@@ -5,6 +5,7 @@
 **Blocked by:** None (can start immediately).
 
 **Status:** ready-for-agent
+**Assignee:** Codex (current session)
 
 - [ ] The UI and same-origin API are served by the existing loopback daemon without requiring a second web server.
 - [ ] The HTTP API remains in the daemon process and is exposed through a documented HTTP/JSON contract.
