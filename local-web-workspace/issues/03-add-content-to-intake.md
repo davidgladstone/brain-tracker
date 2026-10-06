@@ -4,7 +4,8 @@
 
 **Blocked by:** 01 Browse authorized Publications locally.
 
-**Status:** ready-for-agent
+**Status:** claimed
+**Assignee:** Codex (current session)
 
 - [ ] Markdown notes, generic link notes, and local files enter the existing Intake process for the selected Realm.
 - [ ] Intake outcomes and errors are shown from structured application results; the UI does not claim simulated success.
@@ -12,3 +13,9 @@
 - [ ] An item's review status links to that item's focused Intake review when review is required.
 - [ ] Generic URL capture does not imply external fetching or provider connection.
 - [ ] HTTP integration tests verify successful submission, validation errors, and persisted Intake state against a temporary Installation.
+
+## Comments
+
+### 2026-10-06
+
+Claimed by Codex for implementation. Issue 01, “Browse authorized Publications locally,” is resolved; this issue is now the next available Intake slice.
