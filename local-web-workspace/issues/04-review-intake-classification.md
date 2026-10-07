@@ -4,7 +4,7 @@
 
 **Blocked by:** 03 Add content to Intake.
 
-**Status:** claimed
+**Status:** resolved
 **Assignee:** Codex (current session)
 
 - [x] Intake review lists only exceptions that need classification review; routine queued work remains in Queues.
@@ -14,6 +14,7 @@
 - [x] Saving creates the appropriate human classification decision and queues subsequent processing through shared application operations.
 - [x] A focused review route selects and highlights the requested Artifact.
 - [x] HTTP integration tests verify both classification state transition and reprocessing behavior.
+- [x] A locked decision requires a distinct unlock action before a separate tag decision; unlock preserves the current tags and keeps the item available for review.
 
 ## Comments
 
@@ -25,4 +26,10 @@ User confirmed that an accepted classification with an empty Controlled Tag list
 
 Added a Review destination that lists queued Artifact exceptions by attached Realm, opens the requested Artifact from Intake status, shows its text plus Realm tag descriptions/handling guidance, and posts explicit tag selections (including `[]`) and rationale through the shared application review operation. The API verifies the target remains in the review queue before returning text or accepting a decision. Successful reviews enqueue curation. Focused Web API and daemon composition tests passed; the complete ordinary suite passed all Go packages and nine browser tests. Empty-tag semantics are recorded in ADR 0028.
 
-Locked review entries are surfaced but the current editor prevents tag edits while a human lock is active. The domain requires an explicit unlock; UI behavior for combining that unlock with a replacement tag set remains a user decision.
+### 2026-10-07 locked-review clarification and implementation
+
+User chose two separate actions for locked classifications: unlock first, then submit a tag decision. The UI now provides an explicit unlock form with its own rationale. Unlock preserves the current Controlled Tags and leaves the Artifact in the review queue; the second form records the replacement tags and completes the review.
+
+The regression test exposed and fixes a queue-removal bug: Realm classification commits with no queue item did not identify the Artifact when removing a completed review. Queue updates now receive the Artifact ID explicitly. `TestLockedIntakeReviewRequiresSeparateUnlockAndTagDecision` verifies the intermediate unlocked state, retained queue entry and tags, final separate tag decision, persisted classification, and queue removal.
+
+Verification: focused `go test ./internal/webapi -run '^TestLockedIntakeReviewRequiresSeparateUnlockAndTagDecision$' -count=1`; focused `go test ./internal/classification ./internal/application ./internal/webapi -count=1`; `node --check internal/webui/static/app.js`; and full `pwsh -NoProfile -File C:/ai/MyBrain/scripts/test.ps1` all passed. The full suite required execution outside the sandbox because Git fixture subprocesses and Node's test runner failed to spawn under sandbox restrictions.
