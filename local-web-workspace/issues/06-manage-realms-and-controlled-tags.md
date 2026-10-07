@@ -2,8 +2,6 @@
 
 **What to build:** Manage provides safe Installation-local Realm attachment and Realm-canonical Controlled Tag policy editing. Policy changes are saved as one versioned unit and queue the required reclassification and Audience projection work.
 
-**Blocked by:** 01 Browse authorized Publications locally.
-
 **Status:** claimed
 **Assignee:** Codex (current session)
 
@@ -33,6 +31,8 @@ Claimed to continue the Manage surface after Issue 05. Reviewing attachment and 
 The existing `RunReclassification` workflow requires a pre-change baseline and applies stale markers only when authorization-relevant policy changes have affected Artifacts. It schedules classification jobs but does not clearly enqueue curation for every policy-only change; attaching a policy editor directly to this path would therefore not satisfy the requested rebuild behavior. I paused implementation at this seam rather than expose an editor that can leave Publications stale without reliable regeneration. Existing policy validation already enforces finite thresholds in [0,1] and locked-review >= auto-accept; the classifier already routes sufficiently strong contrary evidence against a human lock to `locked_classification_review_required`.
 
 ### 2026-10-07 Issue 06 design clarified
+
+Issue 01 is resolved. Issue 06 is unblocked and ready for implementation.
 
 The implementation contract is now settled. Manage initializes and attaches Realms; a remote is optional. Separate Push and Pull share a saved remote name in Realm repository configuration. Detach preserves canonical Realm data, marks impacted Audiences stale before detaching, and queues curation from remaining Realms; reattachment of the same Realm ID restores saved rules and triggers projection rebuilds subject to the configured safety-drift grace period.
 
